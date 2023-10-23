@@ -7,11 +7,11 @@
     <Application.Resources>
 
 
-
         <!--Blue Colors-->
 
         <SolidColorBrush x:Key="Blu" Color="MediumSlateBlue"></SolidColorBrush>
         <SolidColorBrush x:Key="MoreBlu" Color="#6495ed"></SolidColorBrush>
+        <SolidColorBrush x:Key="DarkerBlu" Color="#6a5acd"></SolidColorBrush>
 
         <!--Blue Colors END-->
 
@@ -24,6 +24,34 @@
         <SolidColorBrush x:Key="BlueMint" Color="#00ced1"></SolidColorBrush>
 
         <!--Mint Colors END-->
+
+
+
+
+        <!--Gradient Brushes-->
+
+        <LinearGradientBrush x:Key="GradientHeaderBackground" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Offset="0" Color="{Binding Source={StaticResource DarkerBlu},Path=Color}"></GradientStop>
+            <GradientStop Offset="1" Color="Transparent"></GradientStop>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="GradientMainWindow" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Offset="0" Color="{Binding Source={StaticResource BlueMint},Path=Color}"></GradientStop>
+            <GradientStop Offset="1" Color="{Binding Source={StaticResource Blu},Path=Color}"></GradientStop>
+        </LinearGradientBrush>
+
+        <!--Gradient Brushes END-->
+
+
+
+        <!--Other Colors-->
+
+        <SolidColorBrush x:Key="TextColor" Color="Black"></SolidColorBrush>
+
+        <!--Other Colors END-->
+
+        <FontFamily x:Key="MainFont"></FontFamily>
+
 
 
 
