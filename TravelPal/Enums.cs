@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TravelPal;
 
-internal enum EUCountries
+public enum EUCountries
 {
     Austria,
     Belgium,
@@ -38,7 +38,7 @@ internal enum EUCountries
 
 }
 
-internal enum NonEUcountries
+public enum NonEUcountries
 {
     //according to https://www.britannica.com/topic/list-of-countries-1993160
     //this was taken from a list of ALL countries
@@ -214,7 +214,7 @@ internal enum NonEUcountries
     Zimbabwe,
 }
 
-internal enum AllCountries
+public enum AllCountries
 {
     Austria,
     Belgium,
