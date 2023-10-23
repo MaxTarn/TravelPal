@@ -31,9 +31,11 @@
 
         <system:Double x:Key="WindowHeight">600</system:Double>
         <system:Double x:Key="PageHeight">495</system:Double> <!--WindowHeight/10*8,25-->
+        <system:Double x:Key="HeaderHeight">75</system:Double> <!--WindowHeight/10*1,25-->
 
         <system:Double x:Key="WindowWidth">800</system:Double>
         <system:Double x:Key="PageWidth">800</system:Double>
+        <system:Double x:Key="HeaderWidth">800</system:Double>
 
         <!--The Diffrent heights of Pages, and windows END-->
 
