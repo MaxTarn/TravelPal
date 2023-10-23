@@ -6,19 +6,19 @@
         xmlns:local="clr-namespace:TravelPal"
         mc:Ignorable="d"
         Title="MainWindow" 
-        Height="600" 
-        Width="800"
-        Background="{StaticResource Mint}">
+        Height="{StaticResource WindowHeight}" 
+        Width="{StaticResource WindowWidth}"
+        Background="{StaticResource BlueMint}">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="4*"></ColumnDefinition>
+            <ColumnDefinition Width="4*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1.5*"></RowDefinition>
-            <RowDefinition Height="8*"></RowDefinition>
+            <RowDefinition Height="1.25*"></RowDefinition>
+            <RowDefinition Height="8.25*"></RowDefinition>
             <RowDefinition Height="0.5*"></RowDefinition>
         </Grid.RowDefinitions>
     </Grid>
