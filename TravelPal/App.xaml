@@ -2,10 +2,42 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:TravelPal"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+
+
+
+        <!--Blue Colors-->
+
         <SolidColorBrush x:Key="Blu" Color="MediumSlateBlue"></SolidColorBrush>
+        <SolidColorBrush x:Key="MoreBlu" Color="#6495ed"></SolidColorBrush>
+
+        <!--Blue Colors END-->
+
+
+
+        <!--Mint Colors-->
+
         <SolidColorBrush x:Key="Mint" Color="MintCream"></SolidColorBrush>
-         
+        <SolidColorBrush x:Key="DarkMint" Color="#20b2aa"></SolidColorBrush>
+        <SolidColorBrush x:Key="BlueMint" Color="#00ced1"></SolidColorBrush>
+
+        <!--Mint Colors END-->
+
+
+
+        <!--The Diffrent heights of Pages, and windows-->
+
+        <system:Double x:Key="WindowHeight">600/</system:Double>
+        <system:Double x:Key="PageHeight">495</system:Double> <!--WindowHeight/10*8,25-->
+
+        <system:Double x:Key="WindowWidth">800</system:Double>
+        <system:Double x:Key="PageWidth">800</system:Double>
+
+        <!--The Diffrent heights of Pages, and windows END-->
+
+
+
     </Application.Resources>
 </Application>
