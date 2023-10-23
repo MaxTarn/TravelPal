@@ -24,5 +24,10 @@ namespace TravelPal.Pages
         {
             InitializeComponent();
         }
+
+        private void BtnExitApp_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }
