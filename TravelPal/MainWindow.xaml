@@ -8,7 +8,9 @@
         Title="MainWindow" 
         Height="{StaticResource WindowHeight}" 
         Width="{StaticResource WindowWidth}"
-        Background="{StaticResource BlueMint}">
+        Background="{StaticResource GradientMainWindow}"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -21,5 +23,26 @@
             <RowDefinition Height="8.25*"></RowDefinition>
             <RowDefinition Height="0.5*"></RowDefinition>
         </Grid.RowDefinitions>
+
+
+        <Frame
+            Name="FrameHeader"
+            Grid.Column="0"
+            Grid.Row="0"
+            Grid.ColumnSpan="4"
+            />
+
+        <Frame
+            Name="FrameMain"
+            Grid.Column="0"
+            Grid.Row="1"
+            Grid.ColumnSpan="4"/>
+
+        <Frame
+            Name="FrameFooter"
+            Grid.Column="0"
+            Grid.Row="2"
+            Grid.ColumnSpan="4"/>
+
     </Grid>
 </Window>

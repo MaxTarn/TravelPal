@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TravelPal.Managers;
+using TravelPal.Pages;
 
 namespace TravelPal
 {
@@ -20,9 +22,19 @@ namespace TravelPal
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        public bool ShowSplashScreen { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
+            UpdateGUI();
+        }
+
+        public void UpdateGUI()
+        {
+            FrameHeader.Content = Manager.HeaderPage;
+            if (ShowSplashScreen) FrameMain.Content = Manager.SplashScreenPage;
         }
     }
 }
