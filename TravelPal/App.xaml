@@ -29,7 +29,7 @@
 
         <!--The Diffrent heights of Pages, and windows-->
 
-        <system:Double x:Key="WindowHeight">600/</system:Double>
+        <system:Double x:Key="WindowHeight">600</system:Double>
         <system:Double x:Key="PageHeight">495</system:Double> <!--WindowHeight/10*8,25-->
 
         <system:Double x:Key="WindowWidth">800</system:Double>
