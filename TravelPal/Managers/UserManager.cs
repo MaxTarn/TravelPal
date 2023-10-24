@@ -22,6 +22,7 @@ namespace TravelPal.Managers
         public UserManager()
         {
             Users.Add(new User("user", "password", AllCountries.Sweden));
+            Users.Add(new Admin("admin", "password", AllCountries.Finland));
         }
     }
 }
