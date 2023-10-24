@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ObjectiveC;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TravelPal.Managers;
+
 
 namespace TravelPal.Pages
 {
@@ -23,6 +26,19 @@ namespace TravelPal.Pages
         public SplashScreenPage()
         {
             InitializeComponent();
+        }
+
+
+        private void TxtBlckLogoLogIn_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Manager.Window.FrameMain.Content = Manager.LogInPage;
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            Manager.Window.FrameMain.Content = Manager.LogInPage;
+
+
         }
     }
 }
