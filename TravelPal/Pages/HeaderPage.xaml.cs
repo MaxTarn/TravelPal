@@ -20,6 +20,7 @@ namespace TravelPal.Pages
     /// </summary>
     public partial class HeaderPage : Page
     {
+
         public HeaderPage()
         {
             InitializeComponent();
