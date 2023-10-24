@@ -12,29 +12,26 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
+
+using TravelPal;
 using TravelPal.Managers;
 using TravelPal.Pages;
 
-namespace TravelPal
+namespace TravelPal;
+
+/// <summary>
+/// Interaction logic for MainWindow.xaml
+/// </summary>
+public partial class MainWindow : Window
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+
+    public MainWindow()
     {
-
-        public bool ShowSplashScreen { get; set; }
-
-        public MainWindow()
-        {
-            InitializeComponent();
-            UpdateGUI();
-        }
-
-        public void UpdateGUI()
-        {
-            FrameHeader.Content = Manager.HeaderPage;
-            if (ShowSplashScreen) FrameMain.Content = Manager.SplashScreenPage;
-        }
+        InitializeComponent();
+        FrameMain.Content = Manager.SplashScreenPage;
+        FrameHeader.Content = Manager.HeaderPage;
+        Show();
     }
 }
+

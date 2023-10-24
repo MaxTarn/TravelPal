@@ -10,7 +10,10 @@
         Width="{StaticResource WindowWidth}"
         Background="{StaticResource GradientMainWindow}"
         WindowStartupLocation="CenterScreen"
-        WindowStyle="None">
+        WindowStyle="None"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        
+        >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -30,19 +33,22 @@
             Grid.Column="0"
             Grid.Row="0"
             Grid.ColumnSpan="4"
+            NavigationUIVisibility="Hidden"
             />
 
         <Frame
             Name="FrameMain"
             Grid.Column="0"
             Grid.Row="1"
-            Grid.ColumnSpan="4"/>
+            Grid.ColumnSpan="4"
+            NavigationUIVisibility="Hidden"/>
 
         <Frame
             Name="FrameFooter"
             Grid.Column="0"
             Grid.Row="2"
-            Grid.ColumnSpan="4"/>
+            Grid.ColumnSpan="4"
+            NavigationUIVisibility="Hidden"/>
 
     </Grid>
 </Window>
