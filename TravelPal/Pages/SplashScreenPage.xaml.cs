@@ -28,7 +28,7 @@ namespace TravelPal.Pages
             InitializeComponent();
         }
 
-
+        //TODO Combine TxtBlckLogoLogIn_OnMouseLeftButtonDown and ButtonBase_OnClick to same method
         private void TxtBlckLogoLogIn_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Manager.Window.FrameMain.Content = Manager.LogInPage;
