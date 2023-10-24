@@ -7,7 +7,9 @@ using TravelPal.Interfaces;
 
 namespace TravelPal.Classes;
 
-internal class TravelDocument : IPackingListItem
+
+
+public class TravelDocument : IPackingListItem
 {
     public string Name { get; set; }
     public string Info { get; set; }

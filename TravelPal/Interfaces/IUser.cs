@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace TravelPal.Interfaces;
 
-internal interface IUser
+
+public interface IUser
 {
     string UserName { get; set; }
     string Password { get; set; }

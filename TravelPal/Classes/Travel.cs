@@ -9,7 +9,8 @@ using TravelPal.Interfaces;
 
 namespace TravelPal.Classes;
 
-internal class Travel
+
+public class Travel
 {
     public string Destination { get; set; }
     public AllCountries Country { get; set; }

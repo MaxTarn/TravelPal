@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TravelPal.Managers
 {
-    internal class TravelManager
+    public class TravelManager
     {
     }
 }
