@@ -83,14 +83,15 @@
             >
             <Label
                 Name="LblErrorInfo"
-                FontSize="30"
+                FontSize="20"
                 Content=""
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
+                Margin="10"
                 Foreground="Red"/>
             <Button
                 Name="BtnLogIn"
-                
+                Cursor="Hand"
                 Background="{StaticResource DarkMint}"
                 Width="180"
                 Height="60"
@@ -99,5 +100,33 @@
                 FontWeight="Bold" Click="BtnLogIn_Click"
             />
         </StackPanel>
+        <Button
+            Name="BtnNoAccount"
+            Grid.Column="1"
+            Grid.Row="4"
+            Grid.ColumnSpan="2"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Background="Transparent"
+            Content="Dont have an Account?"
+            BorderThickness="0,0,0,1"
+            BorderBrush="Black"
+            Click="BtnNoAccount_Click"
+            MouseEnter="BtnNoAccount_OnMouseEnter"
+            MouseLeave="BtnNoAccount_OnMouseLeave"
+            Cursor="Hand"
+            FontSize="15"
+            >
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
     </Grid>
 </Page>
