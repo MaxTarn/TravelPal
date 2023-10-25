@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,9 @@ public enum EUCountries
     Belgium,
     Bulgaria,
     Croatia,
+    [Description("Republic of Cyprus")]
     RepublicOfCyprus,
+    [Description("Czech Republic")]
     CzechRepublic,
     Denmark,
     Estonia,
@@ -49,6 +52,7 @@ public enum NonEUcountries
     Algeria,
     Andorra,
     Angola,
+    [Description("Antigua and Barbuda")]
     AntiguaAndBarbuda,
     Argentina,
     Armenia,
@@ -63,33 +67,44 @@ public enum NonEUcountries
     Benin,
     Bhutan,
     Bolivia,
+    [Description("Bosnia and Herzegovina")]
     BosniaAndHerzegovina,
     Botswana,
     Brazil,
     Brunei,
+    [Description("Burkina Faso")]
     BurkinaFaso,
     Burundi,
+    [Description("Cabo Verde")]
     CaboVerde,
     Cambodia,
     Cameroon,
     Canada,
+    [Description("CentralAfricanRepublic")]
     CentralAfricanRepublic,
     Chad,
     Chile,
     China,
     Colombia,
     Comoros,
+    [Description("Democratic Republic of the Congo")]
     DemocraticRepublicOfTheCongo,
+    [Description("Republic of the Congo")]
     RepublicOfTheCongo,
+    [Description("Costa Rica")]
     CostaRica,
     Cuba,
     Djibouti,
     Dominica,
+    [Description("Dominican Republic")]
     DominicanRepublic,
+    [Description("East Timor")]
     EastTimor,
     Ecuador,
     Egypt,
+    [Description("El Salvador")]
     ElSalvador,
+    [Description("Equatorial Guinea")]
     EquatorialGuinea,
     Eritrea,
     Eswatini,
@@ -102,6 +117,7 @@ public enum NonEUcountries
     Grenada,
     Guatemala,
     Guinea,
+    [Description("Guinea Bissau")]
     GuineaBissau,
     Guyana,
     Haiti,
@@ -118,7 +134,9 @@ public enum NonEUcountries
     Kazakhstan,
     Kenya,
     Kiribati,
+    [Description("Korea North")]
     KoreaNorth,
+    [Description("Korea South")]
     KoreaSouth,
     Kosovo,
     Kuwait,
@@ -138,6 +156,7 @@ public enum NonEUcountries
     Mauritania,
     Mauritius,
     Mexico,
+    [Description("Federated States of Micronesia")]
     FederatedStatesOfMicronesia,
     Moldova,
     Monaco,
@@ -149,16 +168,19 @@ public enum NonEUcountries
     Namibia,
     Nauru,
     Nepal,
+    [Description("New Zealand")]
     NewZealand,
     Nicaragua,
     Niger,
     Nigeria,
+    [Description("North Macedonia")]
     NorthMacedonia,
     Norway,
     Oman,
     Pakistan,
     Palau,
     Panama,
+    [Description("Papua New Guinea")]
     PapuaNewGuinea,
     Paraguay,
     Peru,
@@ -166,23 +188,34 @@ public enum NonEUcountries
     Qatar,
     Russia,
     Rwanda,
+    [Description("Saint Kitts and Nevis")]
     SaintKittsAndNevis,
+    [Description("Saint Lucia")]
     SaintLucia,
+    [Description("Saint Vincent and the Grenadines")]
     SaintVincentAndTheGrenadines,
     Samoa,
+    [Description("San Marino")]
     SanMarino,
+    [Description("Sao Tome and Principe")]
     SaoTomeAndPrincipe,
+    [Description("Saudi Arabia")]
     SaudiArabia,
     Senegal,
     Serbia,
     Seychelles,
+    [Description("Sierra Leone")]
     SierraLeone,
     Singapore,
+    [Description("Solomon Islands")]
     SolomonIslands,
     Somalia,
+    [Description("South Africa")]
     SouthAfrica,
-    Sri, Lanka,
+    [Description("Sri Lanka")]
+    SriLanka,
     Sudan,
+    [Description("South Sudan")]
     SouthSudan,
     Suriname,
     Switzerland,
@@ -193,6 +226,7 @@ public enum NonEUcountries
     Thailand,
     Togo,
     Tonga,
+    [Description("Trinidad and Tobago")]
     TrinidadAndTobago,
     Tunisia,
     Turkey,
@@ -200,12 +234,16 @@ public enum NonEUcountries
     Tuvalu,
     Uganda,
     Ukraine,
+    [Description("United Arab Emirates")]
     UnitedArabEmirates,
+    [Description("United Kingdom")]
     UnitedKingdom,
+    [Description("United States of 'murrica")]
     UnitedStates,
     Uruguay,
     Uzbekistan,
     Vanuatu,
+    [Description("Vatican City")]
     VaticanCity,
     Venezuela,
     Vietnam,
