@@ -19,6 +19,7 @@ public class Manager
     public static HeaderPage HeaderPage = new();
     public static LogInPage LogInPage = new();
     public static SplashScreenPage SplashScreenPage = new();
+    public static RegisterPage RegisterPage = new();
 
 
     //---------- Pages END ----------
