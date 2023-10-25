@@ -12,10 +12,10 @@ namespace TravelPal.Classes
     {
         public string UserName { get; set; }
         public string Password { get; set; }
-        public AllCountries Location { get; set; }
+        public Country Location { get; set; }
         public List<Travel> Travels { get; set; } = new();
 
-        public User(string userName, string password, AllCountries location)
+        public User(string userName, string password, Country location)
         {
             UserName = userName;
             Password = password;

@@ -13,17 +13,17 @@ namespace TravelPal.Classes;
 public class Travel
 {
     public string Destination { get; set; }
-    public AllCountries Country { get; set; }
+    public Country ChosenCountry { get; set; }
     public int Travellers { get; set; }
     public List<IPackingListItem> PackingList;
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
     public int TravelDays { get; set; }
 
-    public Travel(string destination, AllCountries country, DateTime startDate, DateTime endDate)
+    public Travel(string destination, Country chosenCountry, DateTime startDate, DateTime endDate)
     {
         this.Destination = destination;
-        this.Country = country;
+        this.ChosenCountry = chosenCountry;
         this.StartDate = startDate;
         this.EndDate = endDate;
         TravelDays = endDate.Subtract(startDate).Days;

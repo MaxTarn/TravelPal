@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TravelPal.Classes;
 
 namespace TravelPal.Interfaces;
 
@@ -11,6 +12,6 @@ public interface IUser
 {
     string UserName { get; set; }
     string Password { get; set; }
-    AllCountries Location { get; set; }
+    Country Location { get; set; }
 }
 

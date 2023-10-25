@@ -49,8 +49,8 @@ public class UserManager
 
     public UserManager()
     {
-        Users.Add(new User("user", "password", AllCountries.Sweden));
-        Users.Add(new Admin("admin", "password", AllCountries.Finland));
+        Users.Add(new User("user", "password", new Country(EUCountries.Sweden)));
+        Users.Add(new Admin("admin", "password", new Country(EUCountries.Finland)));
     }
 }
 
