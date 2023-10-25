@@ -8,6 +8,9 @@ namespace TravelPal.Classes
 {
     public class Country
     {
+        public static List<Country> EUCountries = new();
+        public static List<Country> NonEUCountries = new();
+
         private EUCountries? euCountry = null;
         private NonEUcountries? nonEuCountry = null;
 
@@ -45,18 +48,30 @@ namespace TravelPal.Classes
             country = (NonEUcountries)nonEuCountry;
         }
 
-        public new string GetType()
+        public string GetCountryType()
         {
-            if (IsEUCountry()) return "EU Country";
-            if (IsNonEUCountry()) return "Non EU country";
+            if (IsEUCountry()) return "EUCountry";
+            if (IsNonEUCountry()) return "NonEUCountry";
             return "If you see this text then something is wrong with the TravelPal.Classes.Country Class";
         }
 
         public override string ToString()
         {
-            if (IsEUCountry()) return euCountry.ToString();
-            if (IsNonEUCountry()) return euCountry.ToString();
-            return "If you see this text then something is wrong with the TravelPal.Classes.Country Class";
+            if (IsEUCountry()) return euCountry.GetDescription();
+            return nonEuCountry.GetDescription();
+        }
+
+
+        static Country()
+        {
+            foreach (EUCountries country in Enum.GetValues(typeof(EUCountries)))
+            {
+                EUCountries.Add(new Country(country));
+            }
+            foreach (NonEUcountries country in Enum.GetValues(typeof(NonEUcountries)))
+            {
+                NonEUCountries.Add(new Country(country));
+            }
         }
     }
 }
