@@ -21,6 +21,8 @@ namespace TravelPal.Pages
     public partial class HeaderPage : Page
     {
 
+
+
         public HeaderPage()
         {
             InitializeComponent();
@@ -29,6 +31,28 @@ namespace TravelPal.Pages
         private void BtnExitApp_Click(object sender, RoutedEventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        public void UpdateGUI()
+        {
+            if (Manager.UserManager.SignedInUser != null)
+            {
+                StckPanelTravel.Visibility = Visibility.Visible;
+                TxtBxUserName.Text = Manager.UserManager.SignedInUser.UserName;
+                TxtBxLogInStatus.Text = "Logged in as";
+                return;
+            }
+
+            TxtBxLogInStatus.Text = "";
+            TxtBxUserName.Text = "";
+            LblTravelHeadline.Visibility = Visibility.Hidden;
+            BtnTravel.Visibility = Visibility.Hidden;
+        }
+
+        private void BtnTravel_OnClick(object sender, RoutedEventArgs e)
+        {
+            Manager.Window.FrameMain.Content = Manager.TravelPage;
+            Manager.TravelPage.UpdateGUI();
         }
     }
 }
