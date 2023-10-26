@@ -47,8 +47,7 @@ namespace TravelPal.Pages
             }
 
             LblErrorInfo.Content = "";
-            Manager.HeaderPage.TxtBxLogInStatus.Text = "Logged in as";
-            Manager.HeaderPage.TxtBxUserName.Text = Manager.UserManager.SignedInUser.UserName;
+            Manager.HeaderPage.UpdateGUI();
         }
         private void BtnNoAccount_Click(object sender, RoutedEventArgs e)
         {
