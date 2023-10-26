@@ -12,12 +12,24 @@ namespace TravelPal.Managers;
 public class UserManager
 {
     public List<IUser> Users = new();
-    public IUser SignedInUser { get; set; } = null;
+    public IUser? SignedInUser { get; set; } = null;
 
 
-    public void AddUser(IUser addThisUser)
+    public string AddUser(IUser addThisUser)
     {
+        if (UserAlreadyExists(addThisUser)) return "User with that username already exists";
         Users.Add(addThisUser);
+        return "User Added";
+    }
+
+    private bool UserAlreadyExists(IUser checkThisUser)
+    {
+        foreach (IUser user in Users)
+        {
+            if (user.UserName == checkThisUser.UserName) return true;
+        }
+
+        return false;
     }
 
     /// <summary>
@@ -46,6 +58,10 @@ public class UserManager
         return "User name or password is wrong!";
     }
 
+    public string LogIn(IUser usr)
+    {
+        return LogIn(usr.UserName, usr.Password);
+    }
 
     public UserManager()
     {
