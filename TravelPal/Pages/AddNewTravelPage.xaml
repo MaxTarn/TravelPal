@@ -1,0 +1,304 @@
+﻿<Page x:Class="TravelPal.Pages.AddNewTravelPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TravelPal.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="412.5" 
+      d:DesignWidth="640"
+      Title="AddNewTravelPage"
+      Background="{StaticResource GradientMainWindow}"
+      DataContext="{Binding RelativeSource={RelativeSource Self}}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Label
+            Grid.Column="0"
+            Grid.Row="0"
+            Content="Trip Name:"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            FontSize="20"/>
+        <TextBox
+            Grid.Column="1"
+            Grid.Row="0"
+            Background="#10000000"
+            BorderThickness="0,0,0,1.1"
+            BorderBrush="Black"
+            VerticalContentAlignment="Center"
+            FontSize="20"
+            Width="auto"
+            Height="30"
+            Text="{Binding TravelName, Mode=TwoWay}"
+            />
+
+
+        <Label
+            Grid.Column="0"
+            Grid.Row="1"
+            Content="Departing from:"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            FontSize="20"/>
+        <StackPanel 
+            Grid.Column="1"
+            Grid.Row="1"
+            Orientation="Vertical"
+            Height="auto"
+            Width="auto">
+
+            <StackPanel
+                Orientation="Horizontal"
+                HorizontalAlignment="Center">
+                <Label
+                    Content="Eu Country"></Label>
+                <CheckBox
+                    Name="ChkBxEuCountryDepart"
+                    VerticalAlignment="Center"
+                    Unchecked="ChkBxEuCountry_OnUnchecked"
+                    Checked="ChkBxEuCountryDepart_Checked"
+                    IsThreeState="False"
+                    IsChecked="False"
+                />
+            </StackPanel>
+
+
+            <ComboBox
+                Name="ComboBxCountriesDepart"
+                Height="30"
+                VerticalContentAlignment="Center"
+                HorizontalContentAlignment="Center"
+                FontSize="10"
+                Background="#10000000"
+                BorderThickness="0,0,0,1.1"
+                BorderBrush="Black">
+                <ComboBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ComboBoxItem}">
+                        <Setter Property="FontSize" Value="10" />
+                    </Style>
+                </ComboBox.ItemContainerStyle>
+            </ComboBox>
+        </StackPanel>
+        
+        <Label
+            Grid.Column="0"
+            Grid.Row="2"
+            Content="Arriving to:"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            FontSize="20"/>
+        <StackPanel 
+            Grid.Column="1"
+            Grid.Row="2"
+            Orientation="Vertical"
+            Height="auto"
+            Width="auto">
+
+            <StackPanel
+                Orientation="Horizontal"
+                HorizontalAlignment="Center">
+                <Label
+                    Content="Eu Country"></Label>
+                <CheckBox
+                    Name="ChkBxEuCountryArrival"
+                    VerticalAlignment="Center"
+                    Unchecked="ChkBxEuCountryArrival_OnUnchecked"
+                    Checked="ChkBxEuCountryArrival_OnChecked"
+                    IsThreeState="False"
+                    IsChecked="False"
+                />
+            </StackPanel>
+
+
+            <ComboBox
+                Name="ComboBxCountriesArrival"
+                Height="25"
+                VerticalContentAlignment="Center"
+                HorizontalContentAlignment="Center"
+                FontSize="10"
+                Background="#10000000"
+                BorderThickness="0,0,0,1.1"
+                BorderBrush="Black">
+                <ComboBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ComboBoxItem}">
+                        <Setter Property="FontSize" Value="10" />
+                    </Style>
+                </ComboBox.ItemContainerStyle>
+            </ComboBox>
+        </StackPanel>
+
+        <Label
+            Grid.Column="0"
+            Grid.Row="3"
+            Content="Arriving to City:"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            FontSize="20"/>
+
+        <TextBox
+            Grid.Column="1"
+            Grid.Row="3"
+            Background="#10000000"
+            BorderThickness="0,0,0,1.1"
+            BorderBrush="Black"
+            VerticalContentAlignment="Center"
+            FontSize="20"
+            Width="auto"
+            Height="30"
+            ></TextBox>
+
+        <Label
+            Grid.Column="0"
+            Grid.Row="4"
+            Content="Starting Date:"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            FontSize="20">
+        </Label>
+        <DatePicker
+            Name="DatePickrStarting"
+            Grid.Column="1"
+            Grid.Row="4"
+            VerticalAlignment="Center"
+            Text="{Binding StartDay, Mode=TwoWay}"
+            ></DatePicker>
+
+        <Label
+            Grid.Column="0"
+            Grid.Row="5"
+            Content="Ending Date:"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            FontSize="20">
+        </Label>
+        <DatePicker
+            Name="DatePickrEnding"
+            Grid.Column="1"
+            Grid.Row="5"
+            VerticalAlignment="Center"
+            Text="{Binding EndDay , Mode=TwoWay}"
+        ></DatePicker>
+
+        <Label
+            Grid.Column="0"
+            Grid.Row="6"
+            Content="Type Of trip:"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            FontSize="20"
+            />
+        <ComboBox
+            Name="ComboBxTripType"
+            Grid.Column="1"
+            Grid.Row="6"
+            Height="25"
+            VerticalContentAlignment="Center"
+            HorizontalContentAlignment="Center"
+            FontSize="10"
+            Background="#10000000"
+            BorderThickness="0,0,0,1.1"
+            BorderBrush="Black"
+            SelectionChanged="ComboBxTripType_OnSelectionChanged">
+            <ComboBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ComboBoxItem}">
+                    <Setter Property="FontSize" Value="10" />
+                </Style>
+            </ComboBox.ItemContainerStyle>
+            <ComboBoxItem Tag="Vacation" >Vacation</ComboBoxItem>
+            <ComboBoxItem Tag="Work Trip">Work Trip</ComboBoxItem>
+        </ComboBox>
+
+        <!--When the ComboBxTripType is Vacation-->
+        <Label
+            Visibility="Hidden"
+            Name="LblAllInclusive"
+            Grid.Column="0"
+            Grid.Row="7"
+            Content="All Inclusive:"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            FontSize="20"
+            />
+        <CheckBox
+            Visibility="Hidden"
+            Name="ChkBxIsAllInclusive"
+            Grid.Column="1"
+            Grid.Row="7"
+            VerticalAlignment="Center"
+            IsChecked="{Binding IsAllInclusive}"/>
+        <!--When the ComboBxTripType is Vacation END-->
+
+
+        <!--When the ComboBxTripType is Work Trip-->
+        <Label
+            Visibility="Hidden"
+            Name="LblWorkTrip"
+            Grid.Column="0"
+            Grid.Row="7"
+            Content="Work Details:"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            FontSize="20"/>
+        <TextBox
+            Visibility="Hidden"
+            Name="TxtBxWorkTrip"
+            Grid.Column="1"
+            Grid.Row="7"
+            Background="#10000000"
+            BorderThickness="0,0,0,1.1"
+            BorderBrush="Black"
+            VerticalContentAlignment="Center"
+            FontSize="20"
+            Width="auto"
+            Height="30"
+            Text="{Binding WorkDetails}"/>
+        <!--When the ComboBxTripType is Work Trip END-->
+
+
+        <Label
+            Grid.Column="3"
+            Grid.Row="0"
+            Grid.ColumnSpan="2"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Center"
+            Margin="8"
+            Content="↓ Your packing List ↓"></Label>
+        <ListView
+            Grid.Column="3"
+            Grid.Row="0"
+            Grid.ColumnSpan="2"
+            Grid.RowSpan="3"
+            Margin="0,50,0,0"/>
+
+
+        <Button
+            Name="BtnCreateNewTravel"
+            Grid.Column="3"
+            Grid.Row="7"
+            Grid.ColumnSpan="2"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Padding="10"
+            Content="Add travel"
+            Background="{StaticResource DarkMint}" 
+            Click="BtnCreateNewTravel_OnClick"/>
+    </Grid>
+</Page>
