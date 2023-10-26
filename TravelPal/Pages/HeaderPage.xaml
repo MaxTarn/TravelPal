@@ -23,34 +23,37 @@
         <Grid.RowDefinitions>
         </Grid.RowDefinitions>
 
-        <!--<StackPanel
+        <StackPanel
+            Name="StckPanelTravel"
             Grid.Column="0"
             Grid.Row="0"
-            Orientation="Vertical">
+            Orientation="Vertical"
+            Visibility="Hidden">
 
             <TextBox
-                Name="LblCountryHeadline"
+                Name="LblTravelHeadline"
                 Background="Transparent"
                 FontSize="10"
-                Text="PlaceHolder"
+                Text="↓ To travels ↓"
                 Foreground="{StaticResource TextColor}"
                 TextAlignment="Left"
                 Margin="0,25,0,0"
                 Padding="0,0,10,0"
                 BorderThickness="0"
             />
-            <TextBox
-                Name="TxtBxCountry"
-                Background="Transparent"
-                VerticalAlignment="Center"
-                FontSize="20"
-                Text="PlaceHolder"
+            <Button
+                Name="BtnTravel"
                 HorizontalAlignment="Left"
-                Foreground="{StaticResource TextColor}"
-                Padding="0,0,10,0"
-                BorderThickness="0"/>
+                Padding="0,0,0,0"
+                Content="Travel Info"
+                FontSize="20"
+                BorderThickness="0,0,0,1"
+                Background="Transparent" 
+                Click="BtnTravel_OnClick">
 
-        </StackPanel>-->
+            </Button>
+
+        </StackPanel>
 
         <StackPanel
             Grid.Column="2"
