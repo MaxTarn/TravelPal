@@ -14,18 +14,21 @@ namespace TravelPal.Classes
         public string Password { get; set; }
         public Country Location { get; set; }
         public List<Travel> Travels { get; set; } = new();
+        public void AddTravel(Travel travel)
+        {
+            Travels.Add(travel);
+        }
+
+        public void RemoveTravel(Travel travel)
+        {
+            Travels.Remove(travel);
+        }
 
         public User(string userName, string password, Country location)
         {
             UserName = userName;
             Password = password;
             Location = location;
-        }
-
-        public User(string userName, string password)
-        {
-            UserName = userName;
-            Password = password;
         }
     }
 }
