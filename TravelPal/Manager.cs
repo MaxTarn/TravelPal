@@ -20,6 +20,8 @@ public class Manager
     public static LogInPage LogInPage = new();
     public static SplashScreenPage SplashScreenPage = new();
     public static RegisterPage RegisterPage = new();
+    public static TravelPage TravelPage = new();
+    public static AddNewTravelPage AddNewTravelPage = new();
 
 
     //---------- Pages END ----------
@@ -38,7 +40,7 @@ public class Manager
 
 
     //---------- The Main window ----------
-    public static MainWindow? Window = (MainWindow?)Application.Current?.MainWindow; // took me an entire day to debug and find that this worked
+    public static MainWindow Window = (MainWindow)Application.Current.MainWindow; // took me an entire day to debug and find that this worked
 
 
 }
