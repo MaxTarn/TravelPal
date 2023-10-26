@@ -12,6 +12,7 @@ namespace TravelPal.Classes;
 
 public class Travel
 {
+    public string TravelName { get; set; }
     public string Destination { get; set; }
     public Country ChosenCountry { get; set; }
     public int Travellers { get; set; }
@@ -19,6 +20,12 @@ public class Travel
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
     public int TravelDays { get; set; }
+
+    public bool IsWorkTrip { get; set; }
+    public string? WorkTripDetails { get; set; } = null;
+    public bool IsVacation { get; set; }
+    public bool? IsAllInclusive { get; set; } = null;
+
 
     public Travel(string destination, Country chosenCountry, DateTime startDate, DateTime endDate)
     {
