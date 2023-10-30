@@ -28,6 +28,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
         <Label
@@ -83,7 +84,7 @@
 
             <ComboBox
                 Name="ComboBxCountriesDepart"
-                Height="30"
+                SelectionChanged="ComboBxCountriesDepart_OnSelectionChanged"
                 VerticalContentAlignment="Center"
                 HorizontalContentAlignment="Center"
                 FontSize="10"
@@ -130,7 +131,7 @@
 
             <ComboBox
                 Name="ComboBxCountriesArrival"
-                Height="25"
+                
                 VerticalContentAlignment="Center"
                 HorizontalContentAlignment="Center"
                 FontSize="10"
@@ -200,6 +201,58 @@
         <Label
             Grid.Column="0"
             Grid.Row="6"
+            Content="Travellers:"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            FontSize="20"/>
+
+        <StackPanel
+            Grid.Column="1"
+            Grid.Row="6"
+            Orientation="Horizontal"
+            >
+            <TextBox
+                Name="TxtBxTravellerCount"
+                Background="#10000000"
+                BorderThickness="0,0,0,1.1"
+                BorderBrush="Black"
+                VerticalContentAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="20"
+                Width="120"
+                Height="30"
+                IsReadOnly="true"
+                HorizontalContentAlignment="Center"
+                Text="{Binding TravellerCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                PreviewTextInput="TxtBxTravellerCount_OnPreviewTextInput"
+            ></TextBox>
+
+            <StackPanel
+                HorizontalAlignment="Right"
+                Margin="8,0,0,0">
+                <Button
+                    Name="BtnIncrementTravellersUp"
+                    Width="20"
+                    Height="20"
+                    Background="{StaticResource DarkMint}"
+                    Content="⮝"
+                    Margin="0,0,0,2" Click="BtnIncrementTravellersUp_Click"/>
+
+                <Button
+                    Name="BtnIncrementTravellersDown"
+                    Width="20"
+                    Height="20"
+                    Background="{StaticResource DarkMint}"
+                    Content="⮟" Click="BtnIncrementTravellersDown_Click"/>
+            </StackPanel>
+        </StackPanel>
+
+        
+
+
+        <Label
+            Grid.Column="0"
+            Grid.Row="7"
             Content="Type Of trip:"
             VerticalAlignment="Center"
             HorizontalAlignment="Right"
@@ -208,7 +261,7 @@
         <ComboBox
             Name="ComboBxTripType"
             Grid.Column="1"
-            Grid.Row="6"
+            Grid.Row="7"
             Height="25"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
@@ -231,7 +284,7 @@
             Visibility="Hidden"
             Name="LblAllInclusive"
             Grid.Column="0"
-            Grid.Row="7"
+            Grid.Row="8"
             Content="All Inclusive:"
             VerticalAlignment="Center"
             HorizontalAlignment="Right"
@@ -241,7 +294,8 @@
             Visibility="Hidden"
             Name="ChkBxIsAllInclusive"
             Grid.Column="1"
-            Grid.Row="7"
+            Grid.Row="8"
+            IsThreeState="False"
             VerticalAlignment="Center"
             IsChecked="{Binding IsAllInclusive}"/>
         <!--When the ComboBxTripType is Vacation END-->
@@ -252,7 +306,7 @@
             Visibility="Hidden"
             Name="LblWorkTrip"
             Grid.Column="0"
-            Grid.Row="7"
+            Grid.Row="8"
             Content="Work Details:"
             VerticalAlignment="Center"
             HorizontalAlignment="Right"
@@ -261,7 +315,7 @@
             Visibility="Hidden"
             Name="TxtBxWorkTrip"
             Grid.Column="1"
-            Grid.Row="7"
+            Grid.Row="8"
             Background="#10000000"
             BorderThickness="0,0,0,1.1"
             BorderBrush="Black"
@@ -273,31 +327,198 @@
         <!--When the ComboBxTripType is Work Trip END-->
 
 
+
         <Label
             Grid.Column="3"
             Grid.Row="0"
-            Grid.ColumnSpan="2"
-            VerticalAlignment="Top"
-            HorizontalAlignment="Center"
-            Margin="8"
-            Content="↓ Your packing List ↓"></Label>
-        <ListView
-            Grid.Column="3"
+            Content="Packing List:"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            FontSize="20"/>
+        
+        <ComboBox
+            Name="ComboBxPackingList"
+            Grid.Column="4"
             Grid.Row="0"
-            Grid.ColumnSpan="2"
-            Grid.RowSpan="3"
-            Margin="0,50,0,0"/>
+            Height="25"
+            VerticalContentAlignment="Center"
+            HorizontalContentAlignment="Center"
+            FontSize="10"
+            Background="#10000000"
+            BorderThickness="0,0,0,1.1"
+            BorderBrush="Black">
+            <ComboBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ComboBoxItem}">
+                    <Setter Property="FontSize" Value="10" />
+                </Style>
+            </ComboBox.ItemContainerStyle>
+        </ComboBox>
 
+        <Label
+            Grid.Column="3"
+            Grid.Row="1"
+            Content="Name of Item:"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            FontSize="20"/>
+        <TextBox
+            Name="TxtBxNameOfItem"
+            Grid.Column="4"
+            Grid.Row="1"
+            Background="#10000000"
+            BorderThickness="0,0,0,1.1"
+            BorderBrush="Black"
+            VerticalContentAlignment="Center"
+            FontSize="20"
+            Width="auto"
+            Height="30"/>
+
+        <Label
+            Grid.Column="3"
+            Grid.Row="2"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            FontSize="20"
+            Content="Info about item:"
+            />
+        <TextBox
+            Name="TxtBxInfoAboutItem"
+            Grid.Column="4"
+            Grid.Row="2"
+            Background="#10000000"
+            BorderThickness="0,0,0,1.1"
+            BorderBrush="Black"
+            VerticalContentAlignment="Center"
+            FontSize="20"
+            Width="auto"
+            Height="30"></TextBox>
+
+        <Label
+            Grid.Column="2"
+            Grid.Row="3"
+            Grid.ColumnSpan="2"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            FontSize="19"
+            Content="Travel Document:"/>
+        <CheckBox
+            Name="ChkBxItemIsTravelDocument"
+            Grid.Column="4"
+            Grid.Row="3"
+            IsThreeState="False"
+            VerticalAlignment="Center" 
+            Checked="ChkBxItemIsTravelDocument_Checked"
+            Unchecked="ChkBxItemIsTravelDocument_OnUnchecked"
+            />
+
+        <Label
+            Name="LblItemCount"
+            Grid.Column="3"
+            Grid.Row="4"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            FontSize="20"
+            Content="Item Count:"/>
+        <StackPanel
+            Name="StkPanlItemCount"
+            Grid.Column="4"
+            Grid.Row="4"
+            Orientation="Horizontal">
+            <TextBox
+                Name="TxtBxItemCount"
+                Background="#10000000"
+                BorderThickness="0,0,0,1.1"
+                BorderBrush="Black"
+                VerticalContentAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="20"
+                Width="120"
+                Height="30"
+                IsReadOnly="true"
+                HorizontalContentAlignment="Center"
+                Text="{Binding ItemCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                PreviewTextInput="TxtBxItemCount_OnPreviewTextInput"
+            ></TextBox>
+
+            <StackPanel
+                HorizontalAlignment="Right"
+                Margin="8,0,0,0">
+                <Button
+                    Name="BtnItemIncrementUp"
+                    Width="20"
+                    Height="20"
+                    Background="{StaticResource DarkMint}"
+                    Content="⮝"
+                    Margin="0,0,0,2" 
+                    Click="BtnItemIncrementUp_OnClick"/>
+
+                <Button
+                    Name="BtnItemIncrementDown"
+                    Width="20"
+                    Height="20"
+                    Background="{StaticResource DarkMint}"
+                    Content="⮟" 
+                    Click="BtnItemIncrementDown_OnClick"/>
+            </StackPanel>
+        </StackPanel>
+
+        <Label
+            Name="LblRequired"
+            Grid.Column="3"
+            Grid.Row="4"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            FontSize="20"
+            Content="Required:"
+            Visibility="Hidden"/>
+        <CheckBox
+            Name="ChkBxItemIsRequired"
+            Grid.Column="4"
+            Grid.Row="4"
+            IsThreeState="False"
+            VerticalAlignment="Center"
+            Visibility="Hidden"/>
 
         <Button
-            Name="BtnCreateNewTravel"
+            Name="BtnAddItemToList"
             Grid.Column="3"
-            Grid.Row="7"
+            Grid.Row="5"
             Grid.ColumnSpan="2"
             VerticalAlignment="Center"
             HorizontalAlignment="Center"
             Padding="10"
+            Content="Add item"
+            Background="{StaticResource DarkMint}"></Button>
+
+
+
+        <TextBlock
+            Name="TxtBlck"
+            Grid.Column="3"
+            Grid.Row="6"
+            Grid.ColumnSpan="2"
+            Grid.RowSpan="2"
+            FontSize="12"
+            TextWrapping="Wrap"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            />
+
+
+
+
+
+            <Button
+            Name="BtnCreateNewTravel"
+            Grid.Column="3"
+            Grid.Row="8"
+            Grid.ColumnSpan="2"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Padding="10"
+            FontWeight="Bold"
             Content="Add travel"
+            FontSize="20"
             Background="{StaticResource DarkMint}" 
             Click="BtnCreateNewTravel_OnClick"/>
     </Grid>
