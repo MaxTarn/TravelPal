@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ObjectiveC;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,6 +21,7 @@ namespace TravelPal.Pages
     /// </summary>
     public partial class TravelPage : Page
     {
+        public bool Testr { get; set; } = false;
         public TravelPage()
         {
             InitializeComponent();
@@ -43,5 +45,8 @@ namespace TravelPal.Pages
         {
             FrameMain.Content = Manager.AddNewTravelPage;
         }
+
+
+
     }
 }
