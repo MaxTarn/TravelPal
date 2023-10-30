@@ -7,7 +7,8 @@
       mc:Ignorable="d" 
       d:DesignHeight="{StaticResource PageHeight}" 
       d:DesignWidth="{StaticResource PageWidth}"
-      Title="TravelPage">
+      Title="TravelPage"
+      DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -64,6 +65,7 @@
             Width="230"
             Background="{StaticResource DarkMint}" Click="BtnCreateNewTravel_Click"
             />
+        
 
         <Frame
             Name="FrameMain"
