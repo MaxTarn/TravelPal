@@ -23,29 +23,157 @@ namespace TravelPal.Pages;
 /// </summary>
 public partial class AddNewTravelPage : Page, INotifyPropertyChanged
 {
+
+
+
+    //---------- Method and property for making databinding TwoWay----------
+
+
     public event PropertyChangedEventHandler PropertyChanged;
+    protected virtual void OnPropertyChanged(string propertyName)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
 
 
-    public string? TravelName { get; set; }
-    public Country? FromCountry { get; set; }
-    public Country? ToCountry { get; set; }
-    public DateTime? StartDay { get; set; } = DateTime.Now;
-    public DateTime? EndDay { get; set; } = DateTime.Now;
+    //---------- Method and property for making databinding TwoWay END----------
+
+
+
+    //---------- Packing List ----------
+
     public List<IPackingListItem> PackingList { get; set; } = new();
-    public string? TripType { get; set; }
-    public bool? IsWorkTrip { get; set; }
-    public bool? IsVacation { get; set; }
-    public bool? IsAllInclusive { get; set; } = false;
-    public string? WorkDetails { get; set; }
+
+
+    //---------- Packing List  END----------
 
 
 
-    private int? _itemCount = 1;
-    private int? _travellerCount = 1;
+    //---------- TwoWay Bound variables ----------
 
+    private string? _travelName;
+    public string? TravelName
+    {
+        get => _travelName;
+        set
+        {
+            if (_travelName == value) return;
+            _travelName = value;
+            OnPropertyChanged(nameof(TravelName));
+        }
+    }
+
+    private Country? _country;
+    public Country? FromCountry
+    {
+        get => _country;
+        set
+        {
+            if (_country == value) return;
+            _country = value;
+            OnPropertyChanged(nameof(FromCountry));
+        }
+    }
+
+    private Country? _toCountry;
+    public Country? ToCountry
+    {
+        get => _toCountry;
+        set
+        {
+            if (_toCountry == value) return;
+            _toCountry = value;
+            OnPropertyChanged(nameof(ToCountry));
+        }
+    }
+
+    private DateTime? _startDay;
+    public DateTime? StartDay
+    {
+        get => _startDay;
+        set
+        {
+            if (_startDay == value) return;
+            _startDay = value;
+            OnPropertyChanged(nameof(StartDay));
+        }
+    }
+    private DateTime? _endDay;
+    public DateTime? EndDay
+    {
+        get => _endDay;
+        set
+        {
+            if (_endDay == value) return;
+            _endDay = value;
+            OnPropertyChanged(nameof(EndDay));
+        }
+    }
+
+    private string? _tripType;
+    public string? TripType
+    {
+        get => _tripType;
+        set
+        {
+            if (_tripType == value) return;
+            _tripType = value;
+            OnPropertyChanged(nameof(TripType));
+        }
+    }
+
+    private bool? _isWorkTrip;
+    public bool? IsWorkTrip
+    {
+        get => IsWorkTrip;
+        set
+        {
+            if (IsWorkTrip == value) return;
+            IsWorkTrip = value;
+            OnPropertyChanged(nameof(IsWorkTrip));
+        }
+    }
+
+    private bool? _isVacation;
+    public bool? IsVacation
+    {
+        get => _isVacation;
+        set
+        {
+            if (_isVacation == value) return;
+            _isVacation = value;
+            OnPropertyChanged(nameof(IsVacation));
+        }
+    }
+
+    private bool? _isAllInclusive;
+    public bool? IsAllInclusive
+    {
+        get => IsAllInclusive;
+        set
+        {
+            if (_isAllInclusive == value) return;
+            _isAllInclusive = value;
+            OnPropertyChanged(nameof(IsAllInclusive));
+        }
+    }
+
+    private string? _workDetails;
+    public string? WorkDetails
+    {
+        get => _workDetails;
+        set
+        {
+            if (_workDetails == value) return;
+            _workDetails = value;
+            OnPropertyChanged(nameof(WorkDetails));
+        }
+    }
+
+    private int? _travellerCount;
     public int? TravellerCount
     {
-        get { return _travellerCount; }
+        get => _travellerCount;
         set
         {
             if (_travellerCount != value)
@@ -56,9 +184,10 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
         }
     }
 
+    private int? _itemCount;
     public int? ItemCount
     {
-        get { return _itemCount; }
+        get => _itemCount;
         set
         {
             if (_itemCount != value)
@@ -68,20 +197,11 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
             }
         }
     }
-
-    protected virtual void OnPropertyChanged(string propertyName)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
+    //---------- TwoWay Bound variables END ----------
 
 
 
-
-
-
-
-
-
+    //---------- Constructor----------
 
 
     public AddNewTravelPage()
@@ -89,9 +209,18 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
         InitializeComponent();
         ChkBxEuCountry_OnUnchecked(null, null);
         ChkBxEuCountryArrival_OnUnchecked(null, null);
+        _itemCount = 1;
+        _travellerCount = 1;
+        StartDay = DateTime.Now;
+        EndDay = DateTime.Now;
     }
 
 
+    //---------- Constructor END----------
+
+
+
+    //---------- Code-Behind methods, and various event handlers----------
     private void ChkBxEuCountryDepart_Checked(object sender, RoutedEventArgs e)
     {
         ComboBxCountriesDepart.Items.Clear();
@@ -165,7 +294,7 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
 
     private void BtnCreateNewTravel_OnClick(object sender, RoutedEventArgs e)
     {
-
+        TravelName = "testr";
         Manager.TravelManager.NewTravel.TravelName = TravelName;
         Manager.TravelManager.NewTravel.FromCountry = FromCountry;
         Manager.TravelManager.NewTravel.ToCountry = ToCountry;
@@ -245,10 +374,32 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
 
     }
 
+
+    //---------- Code-Behind methods, and various event handlers END----------
+
+
+
+    //---------- Methods ----------
+    private void UpdatePackingList()
+    {
+        ComboBxPackingList.Items.Clear();
+
+        foreach (IPackingListItem packItem in PackingList)
+        {
+            ComboBoxItem packItemContainer = new ComboBoxItem();
+            packItemContainer.Tag = packItem;
+            packItemContainer.Content = packItem.Name;
+            ComboBxPackingList.Items.Add(packItemContainer);
+        }
+    }
+    /*private string ValidateFields()
+    {
+
+    }*/
     private void AddDefaultItemsToPackingList()
     {
         Country? selectedDepartingCountry = (ComboBxCountriesArrival.SelectedItem as ComboBoxItem)?.Tag as Country;
-        Country? selectedArrivalCountry = (ComboBxCountriesArrival.SelectedItem as ComboBoxItem)?.Tag as Country;
+        Country? selectedArrivalCountry = (ComboBxCountriesDepart.SelectedItem as ComboBoxItem)?.Tag as Country;
 
         //null checking
         if (selectedDepartingCountry == null) return;
@@ -257,7 +408,10 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
         if (selectedDepartingCountry.IsNonEUCountry())
         {
             PackingList.Add(new TravelDocument("Passport", true));
+            UpdatePackingList();
         }
 
+
     }
+    //---------- Methods END ----------
 }
