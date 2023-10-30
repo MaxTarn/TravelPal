@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TravelPal.Classes;
 
-namespace TravelPal.Managers
+namespace TravelPal.Managers;
+
+public class TravelManager
 {
-    public class TravelManager
-    {
-    }
+    public static Travel NewTravel = new();
 }
+
