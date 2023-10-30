@@ -33,21 +33,6 @@ namespace TravelPal.Classes
             nonEuCountry = country;
         }
 
-        public void GetCountry(out EUCountries? country)
-        {
-            country = null;
-            if (IsNonEUCountry()) return;
-
-            country = (EUCountries)euCountry;
-        }
-        public void GetCountry(out NonEUcountries? country)
-        {
-            country = null;
-            if (IsEUCountry()) return;
-
-            country = (NonEUcountries)nonEuCountry;
-        }
-
         public string GetCountryType()
         {
             if (IsEUCountry()) return "EUCountry";
