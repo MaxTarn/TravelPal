@@ -39,6 +39,7 @@
             HorizontalAlignment="Right"
             FontSize="20"/>
         <TextBox
+            Name="TxtBxTripName"
             Grid.Column="1"
             Grid.Row="0"
             Background="#10000000"
@@ -48,7 +49,7 @@
             FontSize="20"
             Width="auto"
             Height="30"
-            Text="{Binding TravelName, Mode=TwoWay}"
+            Text="{Binding TravelName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             />
 
 
@@ -84,13 +85,14 @@
 
             <ComboBox
                 Name="ComboBxCountriesDepart"
-                SelectionChanged="ComboBxCountriesDepart_OnSelectionChanged"
+                SelectionChanged="ComboBxToAndFromCountry_onSelectionChanged"
                 VerticalContentAlignment="Center"
                 HorizontalContentAlignment="Center"
                 FontSize="10"
                 Background="#10000000"
                 BorderThickness="0,0,0,1.1"
-                BorderBrush="Black">
+                BorderBrush="Black"
+                SelectedItem="{Binding FromCountrySelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <ComboBox.ItemContainerStyle>
                     <Style TargetType="{x:Type ComboBoxItem}">
                         <Setter Property="FontSize" Value="10" />
@@ -131,13 +133,14 @@
 
             <ComboBox
                 Name="ComboBxCountriesArrival"
-                
+                SelectionChanged="ComboBxToAndFromCountry_onSelectionChanged"
                 VerticalContentAlignment="Center"
                 HorizontalContentAlignment="Center"
                 FontSize="10"
                 Background="#10000000"
                 BorderThickness="0,0,0,1.1"
-                BorderBrush="Black">
+                BorderBrush="Black"
+                SelectedItem="{Binding ToCountrySelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <ComboBox.ItemContainerStyle>
                     <Style TargetType="{x:Type ComboBoxItem}">
                         <Setter Property="FontSize" Value="10" />
@@ -155,6 +158,7 @@
             FontSize="20"/>
 
         <TextBox
+            Name="TxtBxArivalCity"
             Grid.Column="1"
             Grid.Row="3"
             Background="#10000000"
@@ -164,6 +168,7 @@
             FontSize="20"
             Width="auto"
             Height="30"
+            Text="{Binding ArrivalCity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             ></TextBox>
 
         <Label
@@ -179,7 +184,7 @@
             Grid.Column="1"
             Grid.Row="4"
             VerticalAlignment="Center"
-            Text="{Binding StartDay, Mode=TwoWay}"
+            Text="{Binding StartDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             ></DatePicker>
 
         <Label
@@ -195,7 +200,7 @@
             Grid.Column="1"
             Grid.Row="5"
             VerticalAlignment="Center"
-            Text="{Binding EndDay , Mode=TwoWay}"
+            Text="{Binding EndDay , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
         ></DatePicker>
 
         <Label
@@ -297,7 +302,7 @@
             Grid.Row="8"
             IsThreeState="False"
             VerticalAlignment="Center"
-            IsChecked="{Binding IsAllInclusive}"/>
+            IsChecked="{Binding IsAllInclusive,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         <!--When the ComboBxTripType is Vacation END-->
 
 
@@ -323,7 +328,7 @@
             FontSize="20"
             Width="auto"
             Height="30"
-            Text="{Binding WorkDetails}"/>
+            Text="{Binding WorkDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         <!--When the ComboBxTripType is Work Trip END-->
 
 
@@ -371,7 +376,8 @@
             VerticalContentAlignment="Center"
             FontSize="20"
             Width="auto"
-            Height="30"/>
+            Height="30"
+            Text="{Binding NameOfItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label
             Grid.Column="3"
@@ -391,7 +397,8 @@
             VerticalContentAlignment="Center"
             FontSize="20"
             Width="auto"
-            Height="30"></TextBox>
+            Height="30"
+            Text="{Binding InfoAboutItem,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
 
         <Label
             Grid.Column="2"
@@ -409,6 +416,7 @@
             VerticalAlignment="Center" 
             Checked="ChkBxItemIsTravelDocument_Checked"
             Unchecked="ChkBxItemIsTravelDocument_OnUnchecked"
+            IsChecked="{Binding ItemIsTravelDocument,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             />
 
         <Label
@@ -477,7 +485,8 @@
             Grid.Row="4"
             IsThreeState="False"
             VerticalAlignment="Center"
-            Visibility="Hidden"/>
+            Visibility="Hidden"
+            IsChecked="{Binding ItemIsRequired,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Button
             Name="BtnAddItemToList"
@@ -488,12 +497,12 @@
             HorizontalAlignment="Center"
             Padding="10"
             Content="Add item"
-            Background="{StaticResource DarkMint}"></Button>
+            Background="{StaticResource DarkMint}" Click="BtnAddItemToList_Click"></Button>
 
 
 
         <TextBlock
-            Name="TxtBlck"
+            Name="TxtBlckError"
             Grid.Column="3"
             Grid.Row="6"
             Grid.ColumnSpan="2"
@@ -502,11 +511,16 @@
             TextWrapping="Wrap"
             VerticalAlignment="Center"
             HorizontalAlignment="Center"
+            Text="{Binding ErrorMessegeText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             />
 
 
 
 
+        <Button
+            Name="BtnDeveloperButton"
+            Grid.Column="2"
+            Grid.Row="8" Click="BtnDeveloperButton_Click"></Button>
 
             <Button
             Name="BtnCreateNewTravel"
