@@ -9,6 +9,6 @@ namespace TravelPal.Managers;
 
 public class TravelManager
 {
-    public static Travel NewTravel = new();
+    public Travel NewTravel = new();
 }
 
