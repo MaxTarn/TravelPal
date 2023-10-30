@@ -12,25 +12,27 @@ namespace TravelPal.Classes;
 
 public class Travel
 {
-    public string TravelName { get; set; }
-    public string Destination { get; set; }
-    public Country ChosenCountry { get; set; }
-    public int Travellers { get; set; }
-    public List<IPackingListItem> PackingList;
-    public DateTime StartDate { get; set; }
-    public DateTime EndDate { get; set; }
-    public int TravelDays { get; set; }
+    public string? TravelName { get; set; }
+    public string? Destination { get; set; }
+    public Country? FromCountry { get; set; }
+    public Country? ToCountry { get; set; }
+    public int? Travellers { get; set; }
+    public List<IPackingListItem> PackingList = new();
+    public DateTime? StartDate { get; set; }
+    public DateTime? EndDate { get; set; }
+    public int? TravelDays { get; set; }
 
-    public bool IsWorkTrip { get; set; }
+    public bool? IsWorkTrip { get; set; }
     public string? WorkTripDetails { get; set; } = null;
-    public bool IsVacation { get; set; }
+    public bool? IsVacation { get; set; }
     public bool? IsAllInclusive { get; set; } = null;
 
 
-    public Travel(string destination, Country chosenCountry, DateTime startDate, DateTime endDate)
+    public Travel(string destination, Country FromCountry, Country ToCountry, DateTime startDate, DateTime endDate)
     {
         this.Destination = destination;
-        this.ChosenCountry = chosenCountry;
+        this.FromCountry = FromCountry;
+        this.ToCountry = ToCountry;
         this.StartDate = startDate;
         this.EndDate = endDate;
         TravelDays = endDate.Subtract(startDate).Days;
@@ -40,6 +42,11 @@ public class Travel
             //TODO implement error messege to the user
             throw new NotImplementedException();
         }
+    }
+
+    public Travel()
+    {
+
     }
 }
 
