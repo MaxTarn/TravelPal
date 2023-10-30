@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.InteropServices.ObjectiveC;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -75,6 +76,19 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
         }
     }
 
+    private ComboBoxItem? _fromCountrySelectedItem;
+    public ComboBoxItem? FromCountrySelectedItem
+    {
+        get => _fromCountrySelectedItem;
+        set
+        {
+            if (_fromCountrySelectedItem == value) return;
+            _fromCountrySelectedItem = value;
+            FromCountry = FromCountrySelectedItem?.Tag as Country;
+            AddDefaultItemsToPackingList();
+        }
+    }
+
     private Country? _toCountry;
     public Country? ToCountry
     {
@@ -84,6 +98,31 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
             if (_toCountry == value) return;
             _toCountry = value;
             OnPropertyChanged(nameof(ToCountry));
+        }
+    }
+
+    private ComboBoxItem? _toCountrySelectedItem;
+    public ComboBoxItem? ToCountrySelectedItem
+    {
+        get => _toCountrySelectedItem;
+        set
+        {
+            if (_toCountrySelectedItem == value) return;
+            _toCountrySelectedItem = value;
+            FromCountry = FromCountrySelectedItem?.Tag as Country;
+            AddDefaultItemsToPackingList();
+        }
+    }
+
+    private string? _arrivalCity;
+    public string? ArrivalCity
+    {
+        get => _arrivalCity;
+        set
+        {
+            if (_arrivalCity == value) return;
+            _arrivalCity = value;
+            OnPropertyChanged(nameof(ArrivalCity));
         }
     }
 
@@ -146,10 +185,10 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
         }
     }
 
-    private bool? _isAllInclusive;
-    public bool? IsAllInclusive
+    private bool _isAllInclusive;
+    public bool IsAllInclusive
     {
-        get => IsAllInclusive;
+        get => _isAllInclusive;
         set
         {
             if (_isAllInclusive == value) return;
@@ -176,11 +215,63 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
         get => _travellerCount;
         set
         {
-            if (_travellerCount != value)
-            {
-                _travellerCount = value;
-                OnPropertyChanged(nameof(TravellerCount));
-            }
+            if (_travellerCount == value) return;
+
+            _travellerCount = value;
+            OnPropertyChanged(nameof(TravellerCount));
+
+        }
+    }
+
+    private string? _nameOfItem;
+    public string? NameOfItem
+    {
+        get => _nameOfItem;
+        set
+        {
+            if (_nameOfItem == value) return;
+            _nameOfItem = value;
+            OnPropertyChanged(nameof(NameOfItem));
+
+        }
+    }
+
+    private string? _infoAboutItem;
+    public string? InfoAboutItem
+    {
+        get => _infoAboutItem;
+        set
+        {
+            if (_infoAboutItem == value) return;
+            _infoAboutItem = value;
+            OnPropertyChanged(nameof(InfoAboutItem));
+
+        }
+    }
+
+    private bool _itemIsRequired;
+    public bool ItemIsRequired
+    {
+        get => _itemIsRequired;
+        set
+        {
+            if (_itemIsRequired == value) return;
+            _itemIsRequired = value;
+            OnPropertyChanged(nameof(ItemIsRequired));
+
+        }
+    }
+
+    private bool _itemIsTravelDocument;
+    public bool ItemIsTravelDocument
+    {
+        get => _itemIsTravelDocument;
+        set
+        {
+            if (_itemIsTravelDocument == value) return;
+            _itemIsTravelDocument = value;
+            OnPropertyChanged(nameof(ItemIsTravelDocument));
+
         }
     }
 
@@ -190,13 +281,28 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
         get => _itemCount;
         set
         {
-            if (_itemCount != value)
-            {
-                _itemCount = value;
-                OnPropertyChanged(nameof(ItemCount));
-            }
+            if (_itemCount == value) return;
+
+            _itemCount = value;
+            OnPropertyChanged(nameof(ItemCount));
+
         }
     }
+
+    private string? _errorMessegeText;
+    public string? ErrorMessegeText
+    {
+        get => _errorMessegeText;
+        set
+        {
+            if (_errorMessegeText == value) return;
+
+            _errorMessegeText = value;
+            OnPropertyChanged(nameof(ErrorMessegeText));
+
+        }
+    }
+
     //---------- TwoWay Bound variables END ----------
 
 
@@ -209,10 +315,15 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
         InitializeComponent();
         ChkBxEuCountry_OnUnchecked(null, null);
         ChkBxEuCountryArrival_OnUnchecked(null, null);
-        _itemCount = 1;
-        _travellerCount = 1;
+
+        FromCountry = (ComboBxCountriesDepart.Items.GetItemAt(1) as ComboBoxItem).Tag as Country;
+
+        ItemCount = 1;
+        TravellerCount = 1;
         StartDay = DateTime.Now;
         EndDay = DateTime.Now;
+        ItemIsRequired = false;
+        IsAllInclusive = false;
     }
 
 
@@ -285,7 +396,7 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
         if (TripType.Equals("Work Trip"))
         {
             ChkBxIsAllInclusive.IsChecked = null;
-            IsAllInclusive = null;
+            IsAllInclusive = false;
 
             LblWorkTrip.Visibility = Visibility.Visible;
             TxtBxWorkTrip.Visibility = Visibility.Visible;
@@ -294,18 +405,26 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
 
     private void BtnCreateNewTravel_OnClick(object sender, RoutedEventArgs e)
     {
-        TravelName = "testr";
-        Manager.TravelManager.NewTravel.TravelName = TravelName;
-        Manager.TravelManager.NewTravel.FromCountry = FromCountry;
-        Manager.TravelManager.NewTravel.ToCountry = ToCountry;
-        Manager.TravelManager.NewTravel.StartDate = StartDay;
-        Manager.TravelManager.NewTravel.EndDate = EndDay;
-        Manager.TravelManager.NewTravel.IsWorkTrip = IsWorkTrip;
-        Manager.TravelManager.NewTravel.WorkTripDetails = WorkDetails;
-        Manager.TravelManager.NewTravel.IsVacation = IsVacation;
-        Manager.TravelManager.NewTravel.IsAllInclusive = IsAllInclusive;
+        MessageBox.Show(Manager.UserManager.SignedInUser?.Travels.Count.ToString());
+        ErrorMessegeText = ValidateFields();
+        if (ErrorMessegeText != null) return;
 
-        MessageBox.Show(TripType);
+        Travel newTravel = new Travel();
+        newTravel.TravelName = TravelName;
+        newTravel.Destination = ArrivalCity;
+        newTravel.FromCountry = FromCountry;
+        newTravel.ToCountry = ToCountry;
+        newTravel.Travellers = TravellerCount;
+        newTravel.PackingList = PackingList;
+        newTravel.StartDate = StartDay;
+        newTravel.EndDate = EndDay;
+        newTravel.IsWorkTrip = IsWorkTrip;
+        newTravel.WorkTripDetails = WorkDetails;
+        newTravel.IsVacation = IsVacation;
+        newTravel.IsAllInclusive = IsAllInclusive;
+
+        Manager.UserManager.SignedInUser.AddTravel(newTravel);
+
     }
 
 
@@ -368,19 +487,42 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
         ChkBxItemIsRequired.Visibility = Visibility.Hidden;
     }
 
-    private void ComboBxCountriesDepart_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void ComboBxToAndFromCountry_onSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         AddDefaultItemsToPackingList();
 
     }
+    private void BtnAddItemToList_Click(object sender, RoutedEventArgs e)
+    {
+        //WHILE DEVELOPING 
+        MessageBox.Show(StartDay.ToString());
+        //WHILE DEVELOPING  END
 
+        string? errorMessege = ValidItemFields();
+        if (errorMessege != null)
+        {
+            TxtBlckError.Text = errorMessege;
+            return;
+        }
+
+        if (ItemIsTravelDocument)
+        {
+            TravelDocument newTravelDocument = new(NameOfItem, ItemIsRequired);
+            PackingList.Add(newTravelDocument);
+            UpdatePackingListGUI();
+        }
+    }
+    private void BtnDeveloperButton_Click(object sender, RoutedEventArgs e)
+    {
+        MessageBox.Show(Manager.UserManager.SignedInUser?.Travels.Count.ToString());
+    }
 
     //---------- Code-Behind methods, and various event handlers END----------
 
 
 
     //---------- Methods ----------
-    private void UpdatePackingList()
+    private void UpdatePackingListGUI()
     {
         ComboBxPackingList.Items.Clear();
 
@@ -392,26 +534,66 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
             ComboBxPackingList.Items.Add(packItemContainer);
         }
     }
-    /*private string ValidateFields()
+    /// <summary>
+    /// Returns null when all fields are not null and the things entered are acceptable
+    /// Returns a non empty string with the error messege if a field is not accepted
+    /// </summary>
+    /// <returns></returns>
+    private string? ValidateFields()
     {
+        // null checking
+        if (TravelName == null) return "Trip Name:  is empty!";
+        if (FromCountry == null) return "Choose a departing country";
+        if (ToCountry == null) return "Choose a Arrival country!";
+        if (ArrivalCity == null) return "Arriving to City:  is empty!";
+        if (StartDay == null) return "Choose a Starting Date: !";
+        if (EndDay == null) return "Choose an Ending Date:  !";
+        if (TravellerCount == null) return "Travellers:  is empty!";
+        if (TripType == null) return "Choose what Type Of Trip: it is!";
 
-    }*/
+
+        //checkign ifg input is acceptable
+        if (TravelName.Length <= 3) return "Write a longer Trip Name:   !";
+        if (FromCountry.Equals(ToCountry)) return "You are departing from and arriving to the same country";
+        if (ArrivalCity.Length <= 1) return "City name too short!";
+        if (StartDay > EndDay) return "You cant depart after you arrive!";
+        //if (StartDay.Equals(EndDay)) return "You cant depart and arrive on the same day!";
+
+
+        return ValidItemFields();
+    }
     private void AddDefaultItemsToPackingList()
     {
-        Country? selectedDepartingCountry = (ComboBxCountriesArrival.SelectedItem as ComboBoxItem)?.Tag as Country;
-        Country? selectedArrivalCountry = (ComboBxCountriesDepart.SelectedItem as ComboBoxItem)?.Tag as Country;
-
         //null checking
-        if (selectedDepartingCountry == null) return;
-        if (selectedArrivalCountry == null) return;
+        if (FromCountrySelectedItem == null) return;
+        if (ToCountrySelectedItem == null) return;
 
-        if (selectedDepartingCountry.IsNonEUCountry())
+        foreach (IPackingListItem item in PackingList)
         {
-            PackingList.Add(new TravelDocument("Passport", true));
-            UpdatePackingList();
+            if (item.Name.Equals("Passport")) return;
+        }
+
+        if (FromCountry.IsEUCountry() && ToCountry.IsEUCountry())
+        {
+            PackingList.Add(new TravelDocument("Passport", false));
+            UpdatePackingListGUI();
+            return;
         }
 
 
+        PackingList.Add(new TravelDocument("Passport", true));
+        UpdatePackingListGUI();
     }
+
+    private string? ValidItemFields()
+    {
+        if (NameOfItem == null) return "Write the name of the item!";
+        if (ItemCount <= 0) return "You need more than 1 of your item!";
+        return null;
+    }
+
+
+
+
     //---------- Methods END ----------
 }
