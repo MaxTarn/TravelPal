@@ -12,13 +12,14 @@ namespace TravelPal.Classes;
 public class TravelDocument : IPackingListItem
 {
     public string Name { get; set; }
-    public string Info { get; set; }
+    public string? Info { get; set; }
     public bool Required { get; set; }
 
 
     public TravelDocument(string name, bool required)
     {
-
+        this.Name = name;
+        this.Required = required;
     }
 }
 
