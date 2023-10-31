@@ -41,15 +41,6 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
 
 
 
-    //---------- Packing List ----------
-
-    public List<IPackingListItem> PackingList { get; set; } = new();
-
-
-    //---------- Packing List  END----------
-
-
-
     //---------- TwoWay Bound variables ----------
 
     private string? _travelName;
@@ -307,6 +298,16 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
 
 
 
+    //---------- Packing List ----------
+
+
+    public List<IPackingListItem> PackingList { get; set; } = new();
+
+
+    //---------- Packing List  END----------
+
+
+
     //---------- Constructor----------
 
 
@@ -494,23 +495,34 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
     }
     private void BtnAddItemToList_Click(object sender, RoutedEventArgs e)
     {
-        //WHILE DEVELOPING 
-        MessageBox.Show(StartDay.ToString());
-        //WHILE DEVELOPING  END
 
-        string? errorMessege = ValidItemFields();
-        if (errorMessege != null)
+        ErrorMessegeText = ValidItemFields();
+        if (ErrorMessegeText != null) return;
+
+        IPackingListItem newItem = new OtherItem(NameOfItem, ItemCount);
+
+        if (ItemIsTravelDocument) newItem = new TravelDocument(NameOfItem, ItemIsRequired);
+
+        newItem.Info = InfoAboutItem;
+        PackingList.Add(newItem);
+        UpdatePackingListGUI();
+        ClearItemFields();
+
+        /*if (ItemIsTravelDocument)
         {
-            TxtBlckError.Text = errorMessege;
+            TravelDocument newTravelDocument = new(NameOfItem, ItemIsRequired);
+            newTravelDocument.Info = InfoAboutItem;
+            PackingList.Add(newTravelDocument);
+            UpdatePackingListGUI();
+            ClearItemFields();
             return;
         }
 
-        if (ItemIsTravelDocument)
-        {
-            TravelDocument newTravelDocument = new(NameOfItem, ItemIsRequired);
-            PackingList.Add(newTravelDocument);
-            UpdatePackingListGUI();
-        }
+        OtherItem newItem = new(NameOfItem, ItemCount);
+        newItem.Info = InfoAboutItem;
+        PackingList.Add(newItem);
+        UpdatePackingListGUI();
+        ClearItemFields();*/
     }
     private void BtnDeveloperButton_Click(object sender, RoutedEventArgs e)
     {
@@ -592,7 +604,14 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
         return null;
     }
 
-
+    public void ClearItemFields()
+    {
+        NameOfItem = "";
+        InfoAboutItem = "";
+        ItemIsTravelDocument = false;
+        ItemCount = 1;
+        ItemIsRequired = false;
+    }
 
 
     //---------- Methods END ----------
