@@ -37,7 +37,7 @@ namespace TravelPal.Classes
         {
             if (IsEUCountry()) return "EUCountry";
             if (IsNonEUCountry()) return "NonEUCountry";
-            return "If you see this text then something is wrong with the TravelPal.Classes.Country Class";
+            return "";
         }
 
         public override string ToString()
