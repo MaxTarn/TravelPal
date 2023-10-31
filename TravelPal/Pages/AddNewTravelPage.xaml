@@ -520,7 +520,8 @@
         <Button
             Name="BtnDeveloperButton"
             Grid.Column="2"
-            Grid.Row="8" Click="BtnDeveloperButton_Click"></Button>
+            Grid.Row="8" Click="BtnDeveloperButton_Click"
+            ></Button>
 
             <Button
             Name="BtnCreateNewTravel"
