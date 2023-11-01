@@ -63,7 +63,8 @@
             Content="Make new Travel Plan"
             Height="45"
             Width="230"
-            Background="{StaticResource DarkMint}" Click="BtnCreateNewTravel_Click"
+            Background="{StaticResource DarkMint}" 
+            Click="BtnCreateNewTravel_Click"
             />
         
 
