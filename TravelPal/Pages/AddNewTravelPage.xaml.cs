@@ -76,7 +76,7 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
             if (_fromCountrySelectedItem == value) return;
             _fromCountrySelectedItem = value;
             FromCountry = FromCountrySelectedItem?.Tag as Country;
-            AddDefaultItemsToPackingList();
+
         }
     }
 
@@ -100,8 +100,7 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
         {
             if (_toCountrySelectedItem == value) return;
             _toCountrySelectedItem = value;
-            FromCountry = FromCountrySelectedItem?.Tag as Country;
-            AddDefaultItemsToPackingList();
+            ToCountry = ToCountrySelectedItem?.Tag as Country;
         }
     }
 
@@ -155,7 +154,7 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
     private bool? _isWorkTrip;
     public bool? IsWorkTrip
     {
-        get => IsWorkTrip;
+        get => _isWorkTrip;
         set
         {
             if (IsWorkTrip == value) return;
@@ -317,7 +316,7 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
         ChkBxEuCountry_OnUnchecked(null, null);
         ChkBxEuCountryArrival_OnUnchecked(null, null);
 
-        FromCountry = (ComboBxCountriesDepart.Items.GetItemAt(1) as ComboBoxItem).Tag as Country;
+        FromCountry = (ComboBxCountriesDepart.Items.GetItemAt(1) as ComboBoxItem)?.Tag as Country;
 
         ItemCount = 1;
         TravellerCount = 1;
@@ -425,7 +424,7 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
         newTravel.IsAllInclusive = IsAllInclusive;
 
         Manager.UserManager.SignedInUser.AddTravel(newTravel);
-
+        Manager.TravelPage.UpdateGUI();
     }
 
 
@@ -486,6 +485,8 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
 
         LblRequired.Visibility = Visibility.Hidden;
         ChkBxItemIsRequired.Visibility = Visibility.Hidden;
+        TxtBxItemCount.Text = "1";
+        ItemCount = 1;
     }
 
     private void ComboBxToAndFromCountry_onSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -507,27 +508,8 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
         PackingList.Add(newItem);
         UpdatePackingListGUI();
         ClearItemFields();
-
-        /*if (ItemIsTravelDocument)
-        {
-            TravelDocument newTravelDocument = new(NameOfItem, ItemIsRequired);
-            newTravelDocument.Info = InfoAboutItem;
-            PackingList.Add(newTravelDocument);
-            UpdatePackingListGUI();
-            ClearItemFields();
-            return;
-        }
-
-        OtherItem newItem = new(NameOfItem, ItemCount);
-        newItem.Info = InfoAboutItem;
-        PackingList.Add(newItem);
-        UpdatePackingListGUI();
-        ClearItemFields();*/
     }
-    private void BtnDeveloperButton_Click(object sender, RoutedEventArgs e)
-    {
-        MessageBox.Show(Manager.UserManager.SignedInUser?.Travels.Count.ToString());
-    }
+
 
     //---------- Code-Behind methods, and various event handlers END----------
 
@@ -542,7 +524,19 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
         {
             ComboBoxItem packItemContainer = new ComboBoxItem();
             packItemContainer.Tag = packItem;
+
             packItemContainer.Content = packItem.Name;
+
+            if (packItem.GetType() == typeof(TravelDocument))
+            {
+                if ((packItem as TravelDocument).Required) packItemContainer.Content += " | Required";  //required is true
+                if (!(packItem as TravelDocument).Required) packItemContainer.Content += " | Not Required"; //required is false
+            }
+
+            if (packItem.GetType() == typeof(OtherItem))
+            {
+                packItemContainer.Content += $" | {(packItem as OtherItem).Quantity} pcs";
+            }
             ComboBxPackingList.Items.Add(packItemContainer);
         }
     }
@@ -572,13 +566,15 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
         //if (StartDay.Equals(EndDay)) return "You cant depart and arrive on the same day!";
 
 
-        return ValidItemFields();
+        return null;
     }
     private void AddDefaultItemsToPackingList()
     {
         //null checking
         if (FromCountrySelectedItem == null) return;
         if (ToCountrySelectedItem == null) return;
+
+        PackingList.RemoveAll(item => item.Name == "Passport");
 
         foreach (IPackingListItem item in PackingList)
         {
@@ -591,7 +587,6 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
             UpdatePackingListGUI();
             return;
         }
-
 
         PackingList.Add(new TravelDocument("Passport", true));
         UpdatePackingListGUI();
