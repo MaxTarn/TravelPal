@@ -28,24 +28,14 @@
             Grid.Column="0"
             Grid.Row="0"
             Orientation="Vertical"
-            Visibility="Hidden">
+            Visibility="Hidden"
+            VerticalAlignment="Center">
 
-            <TextBox
-                Name="LblTravelHeadline"
-                Background="Transparent"
-                FontSize="10"
-                Text="↓ To travels ↓"
-                Foreground="{StaticResource TextColor}"
-                TextAlignment="Left"
-                Margin="0,25,0,0"
-                Padding="0,0,10,0"
-                BorderThickness="0"
-            />
             <Button
                 Name="BtnTravel"
-                HorizontalAlignment="Left"
-                Padding="0,0,0,0"
-                Content="Travel Info"
+                HorizontalAlignment="Center"
+                Padding="3"
+                Content="Create Travel"
                 FontSize="20"
                 BorderThickness="0,0,0,1"
                 Background="Transparent" 
@@ -54,6 +44,26 @@
             </Button>
 
         </StackPanel>
+
+
+        <StackPanel
+            Name="StckPanelMiddle"
+            Visibility="Hidden"
+            Grid.Column="1"
+            Grid.Row="0"
+            Orientation="Horizontal"
+            HorizontalAlignment="Center">
+            <Button
+                Name="BtnViewTravels"
+                Content="Your Travels"
+                Margin="2"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                BorderThickness="0,0,0,1"
+                Background="Transparent" 
+                Click="BtnViewTravels_OnClick"></Button>
+        </StackPanel>
+
 
         <StackPanel
             Grid.Column="2"
@@ -82,15 +92,16 @@
                 Padding="0,0,10,0"
                 BorderThickness="0"
             />
-            <TextBox
-                Name="TxtBxUserName"
+            <Button
+                Name="BtnUserDetails"
                 Background="Transparent"
                 VerticalAlignment="Center"
+                HorizontalAlignment="Right"
                 FontSize="20"
-                TextAlignment="Right"
                 Foreground="{StaticResource TextColor}"
-                Padding="0,0,10,0"
-                BorderThickness="0"/>
+                Margin="0,0,10,0"
+                BorderThickness="0"
+                Click="BtnUserDetails_OnClick"/>
 
         </StackPanel>
 
