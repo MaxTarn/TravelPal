@@ -9,7 +9,7 @@
 
         <!--Blue Colors-->
 
-        <SolidColorBrush x:Key="Blu" Color="MediumSlateBlue"></SolidColorBrush>
+        
         <SolidColorBrush x:Key="MoreBlu" Color="#6495ed"></SolidColorBrush>
         <SolidColorBrush x:Key="DarkerBlu" Color="#6a5acd"></SolidColorBrush>
 
@@ -69,36 +69,12 @@
         <!--The Diffrent heights of Pages, and windows END-->
 
 
+        <FontFamily x:Key="MonoSpaceFont">Consolas</FontFamily>
 
-        <!--Diffrent styles-->
-        <!--<Style TargetType="TextBlock">
-            <Style.Triggers>
-                <EventTrigger RoutedEvent="MouseEnter">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.5" />
-                            <StringAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.Text)">
-                                <DiscreteStringKeyFrame KeyTime="0:0:0.5" Value="Log In" />
-                            </StringAnimationUsingKeyFrames>
-                            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.5" BeginTime="0:0:0.5" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-                <EventTrigger RoutedEvent="MouseLeave">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.5" />
-                            <StringAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.Text)">
-                                <DiscreteStringKeyFrame KeyTime="0:0:0.5" Value="TravelPal" />
-                            </StringAnimationUsingKeyFrames>
-                            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.5" BeginTime="0:0:0.5" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </Style.Triggers>
-        </Style>-->
-
-        <!--Diffrent styles END-->
+        <system:String x:Key="ArrowLeft">⮜</system:String>
+        <system:String x:Key="ArrowUp">⮝</system:String>
+        <system:String x:Key="ArrowRight">⮞</system:String>
+        <system:String x:Key="ArrowDown">⮟</system:String>
 
     </Application.Resources>
 </Application>
