@@ -52,7 +52,6 @@ namespace TravelPal.Pages
         private void BtnTravel_OnClick(object sender, RoutedEventArgs e)
         {
             Manager.Window.FrameMain.Content = Manager.TravelPage;
-            Manager.TravelPage.UpdateGUI();
         }
     }
 }
