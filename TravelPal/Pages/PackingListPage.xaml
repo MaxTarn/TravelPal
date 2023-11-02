@@ -26,8 +26,20 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
+        <Button
+            Grid.Column="0"
+            Grid.Row="0"
+            Name="BtnGoToAddNewTravel"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            Padding="5"
+            Margin="10,0,0,0"
+            Content="{StaticResource ArrowLeft}"
+            Background="{StaticResource DarkMint}" 
+            Click="BtnAddItemToList_OnClick"/>
         <Label
             Grid.Column="0"
             Grid.Row="0"
@@ -44,8 +56,27 @@
             Grid.Row="1"
             Grid.ColumnSpan="2"
             Grid.RowSpan="5"
+            Background="#33000000" 
+            Foreground="White" 
+            BorderBrush="Transparent" 
+            BorderThickness="0" 
+            Margin="10" 
+            Padding="5"
+            FontFamily="{StaticResource MonoSpaceFont}"
+            ItemsSource="{Binding PackingList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             >
-            
+            <ListView.Template>
+                <ControlTemplate TargetType="ListView">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <ScrollViewer>
+                            <ItemsPresenter />
+                        </ScrollViewer>
+                    </Border>
+                </ControlTemplate>
+            </ListView.Template>
+
         </ListView>
 
         <Label
@@ -102,9 +133,9 @@
             Grid.Row="2"
             IsThreeState="False"
             VerticalAlignment="Center" 
-            Checked="ChkBxItemIsTravelDocument_Checked"
+            Checked="ChkBxItemIsTravelDocument_OnChecked"
             Unchecked="ChkBxItemIsTravelDocument_OnUnchecked"
-        />
+        >Click for yes</CheckBox>
 
         <Label
             Name="LblItemCount"
@@ -144,7 +175,7 @@
                     Width="20"
                     Height="20"
                     Background="{StaticResource DarkMint}"
-                    Content="⮝"
+                    Content="{StaticResource ArrowUp}"
                     Margin="0,0,0,2" 
                     Click="BtnItemIncrementUp_OnClick"/>
 
@@ -153,9 +184,57 @@
                     Width="20"
                     Height="20"
                     Background="{StaticResource DarkMint}"
-                    Content="⮟" 
+                    Content="{StaticResource ArrowDown}" 
                     Click="BtnItemIncrementDown_OnClick"/>
             </StackPanel>
         </StackPanel>
+
+
+        <!--When the TravelDocument checkbox is checked-->
+
+        <Label
+            Name="LblItemIsRequired"
+            Visibility="Hidden"
+            Grid.Column="2"
+            Grid.ColumnSpan="2"
+            Grid.Row="3"
+            Content="Item Is Required:"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            FontSize="20"
+            ></Label>
+        <CheckBox
+            Name="ChkBxItemIsRequired"
+            Visibility="Hidden"
+            Grid.Column="4"
+            Grid.Row="3"
+            IsThreeState="False"
+            VerticalAlignment="Center" 
+            IsChecked="{Binding ItemIsRequired}">Click for yes</CheckBox>
+        <!--When the TravelDocument checkbox is checked END-->
+
+
+
+        <StackPanel
+            Grid.Column="3"
+            Grid.Row="5"
+            Grid.ColumnSpan="2"
+            Orientation="Horizontal"
+            HorizontalAlignment="Center"
+            >
+            
+
+            <Button
+                Name="BtnAddItemToList"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Margin="0,0,10,0"
+                Padding="10"
+                Content="Add item"
+                Background="{StaticResource DarkMint}" 
+                Click="BtnAddItemToList_OnClick"/>
+            
+        </StackPanel>
+
     </Grid>
 </Page>
