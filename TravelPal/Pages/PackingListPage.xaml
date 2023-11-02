@@ -29,17 +29,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Button
-            Grid.Column="0"
-            Grid.Row="0"
-            Name="BtnGoToAddNewTravel"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Left"
-            Padding="5"
-            Margin="10,0,0,0"
-            Content="{StaticResource ArrowLeft}"
-            Background="{StaticResource DarkMint}" 
-            Click="BtnAddItemToList_OnClick"/>
+        
         <Label
             Grid.Column="0"
             Grid.Row="0"
@@ -231,8 +221,5 @@
             Background="{StaticResource DarkMint}" 
             Click="BtnAddItemToList_OnClick"/>
 
-        <Button
-            Grid.Column="2"
-            Grid.Row="1" Click="Button_Click"></Button>
     </Grid>
 </Page>
