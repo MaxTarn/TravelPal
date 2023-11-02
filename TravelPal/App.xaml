@@ -9,7 +9,7 @@
 
         <!--Blue Colors-->
 
-        
+        <SolidColorBrush x:Key="Blu" Color="MediumSlateBlue"></SolidColorBrush>
         <SolidColorBrush x:Key="MoreBlu" Color="#6495ed"></SolidColorBrush>
         <SolidColorBrush x:Key="DarkerBlu" Color="#6a5acd"></SolidColorBrush>
 
