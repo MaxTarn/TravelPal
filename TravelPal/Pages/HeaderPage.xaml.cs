@@ -38,20 +38,31 @@ namespace TravelPal.Pages
             if (Manager.UserManager.SignedInUser != null)
             {
                 StckPanelTravel.Visibility = Visibility.Visible;
-                TxtBxUserName.Text = Manager.UserManager.SignedInUser.UserName;
+                StckPanelMiddle.Visibility = Visibility.Visible;
+                BtnUserDetails.Content = Manager.UserManager.SignedInUser.UserName;
                 TxtBxLogInStatus.Text = "Logged in as";
                 return;
             }
 
             TxtBxLogInStatus.Text = "";
-            TxtBxUserName.Text = "";
-            LblTravelHeadline.Visibility = Visibility.Hidden;
+            BtnUserDetails.Content = "";
+            StckPanelTravel.Visibility = Visibility.Hidden;
             BtnTravel.Visibility = Visibility.Hidden;
         }
 
         private void BtnTravel_OnClick(object sender, RoutedEventArgs e)
         {
             Manager.Window.FrameMain.Content = Manager.TravelPage;
+        }
+
+        private void BtnViewTravels_OnClick(object sender, RoutedEventArgs e)
+        {
+            Manager.Window.FrameMain.Content = Manager.ViewTravelPage;
+        }
+
+        private void BtnUserDetails_OnClick(object sender, RoutedEventArgs e)
+        {
+            Manager.Window.FrameMain.Content = Manager.UserDetailsPage;
         }
     }
 }
