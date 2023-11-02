@@ -162,7 +162,7 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
         set
         {
             if (IsWorkTrip == value) return;
-            IsWorkTrip = value;
+            _isWorkTrip = value;
             OnPropertyChanged(nameof(IsWorkTrip));
         }
     }
@@ -216,6 +216,13 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
 
         }
     }
+
+
+
+
+
+
+
 
     private string? _nameOfItem;
     public string? NameOfItem
@@ -390,6 +397,9 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
 
         if (TripType.Equals("Vacation"))
         {
+            IsVacation = true;
+            IsWorkTrip = false;
+
             TxtBxWorkTrip.Text = null;
             WorkDetails = null;
 
@@ -399,6 +409,9 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
 
         if (TripType.Equals("Work Trip"))
         {
+            IsVacation = false;
+            IsWorkTrip = true;
+
             ChkBxIsAllInclusive.IsChecked = null;
             IsAllInclusive = false;
 
@@ -413,6 +426,7 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
         ErrorMessegeText = ValidateFields();
         if (ErrorMessegeText != null) return;
 
+        //TODO IsWorkTrip and IsVaccation can be null at the same time, fix it
         Travel newTravel = new Travel();
         newTravel.TravelName = TravelName;
         newTravel.Destination = ArrivalCity;
@@ -451,98 +465,19 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
         TravellerCount--;
     }
 
-    private void BtnItemIncrementDown_OnClick(object sender, RoutedEventArgs e)
-    {
-        ItemCount--;
-    }
-
-    private void BtnItemIncrementUp_OnClick(object sender, RoutedEventArgs e)
-    {
-        ItemCount++;
-    }
-
-    private void TxtBxItemCount_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
-    {
-        if (!char.IsDigit(e.Text, e.Text.Length - 1))
-        {
-            e.Handled = true;
-
-        }
-    }
-
-    //private void ChkBxItemIsTravelDocument_Checked(object sender, RoutedEventArgs e)
-    //{
-    //    LblRequired.Visibility = Visibility.Visible;
-    //    ChkBxItemIsRequired.Visibility = Visibility.Visible;
-
-    //    LblItemCount.Visibility = Visibility.Hidden;
-    //    StkPanlItemCount.Visibility = Visibility.Hidden;
-    //    TxtBxItemCount.Text = "1";
-    //    ItemCount = 1;
-    //}
-
-    //private void ChkBxItemIsTravelDocument_OnUnchecked(object sender, RoutedEventArgs e)
-    //{
-    //    LblItemCount.Visibility = Visibility.Visible;
-    //    StkPanlItemCount.Visibility = Visibility.Visible;
-
-    //    LblRequired.Visibility = Visibility.Hidden;
-    //    ChkBxItemIsRequired.Visibility = Visibility.Hidden;
-    //    TxtBxItemCount.Text = "1";
-    //    ItemCount = 1;
-    //}
 
     private void ComboBxToAndFromCountry_onSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         AddDefaultItemsToPackingList();
 
     }
-    private void BtnAddItemToList_Click(object sender, RoutedEventArgs e)
-    {
-
-        ErrorMessegeText = ValidItemFields();
-        if (ErrorMessegeText != null) return;
-
-        IPackingListItem newItem = new OtherItem(NameOfItem, ItemCount);
-
-        if (ItemIsTravelDocument) newItem = new TravelDocument(NameOfItem, ItemIsRequired);
-
-        newItem.Info = InfoAboutItem;
-        PackingList.Add(newItem);
-        //UpdatePackingListGUI();
-        ClearItemFields();
-    }
-
 
     //---------- Code-Behind methods, and various event handlers END----------
 
 
 
     //---------- Methods ----------
-    //private void UpdatePackingListGUI()
-    //{
-    //    ComboBxPackingList.Items.Clear();
 
-    //    foreach (IPackingListItem packItem in PackingList)
-    //    {
-    //        ComboBoxItem packItemContainer = new ComboBoxItem();
-    //        packItemContainer.Tag = packItem;
-
-    //        packItemContainer.Content = packItem.Name;
-
-    //        if (packItem.GetType() == typeof(TravelDocument))
-    //        {
-    //            if ((packItem as TravelDocument).Required) packItemContainer.Content += " | Required";  //required is true
-    //            if (!(packItem as TravelDocument).Required) packItemContainer.Content += " | Not Required"; //required is false
-    //        }
-
-    //        if (packItem.GetType() == typeof(OtherItem))
-    //        {
-    //            packItemContainer.Content += $" | {(packItem as OtherItem).Quantity} pcs";
-    //        }
-    //        ComboBxPackingList.Items.Add(packItemContainer);
-    //    }
-    //}
     /// <summary>
     /// Returns null when all fields are not null and the things entered are acceptable
     /// Returns a non empty string with the error messege if a field is not accepted
@@ -566,7 +501,7 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
         if (FromCountry.Equals(ToCountry)) return "You are departing from and arriving to the same country";
         if (ArrivalCity.Length <= 1) return "City name too short!";
         if (StartDay > EndDay) return "You cant depart after you arrive!";
-        if (EndDay < DateTime.Now) return "You cant have a trip that ends in the past!";
+        if (EndDay <= DateTime.Now) return "Ending date is either the same day as or earlier than today!";
         //if (StartDay.Equals(EndDay)) return "You cant depart and arrive on the same day!";
 
 
@@ -615,21 +550,20 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
 
     }
 
-    private string? ValidItemFields()
+    public void ClearFields()
     {
-        if (NameOfItem == null) return "Write the name of the item!";
-        if (ItemCount <= 0) return "You need more than 1 of your item!";
-        return null;
+        TravelName = "";
+        ArrivalCity = "";
+        StartDay = DateTime.Now;
+        EndDay = DateTime.Now;
+        TravellerCount = 1;
+
+        ComboBxCountriesArrival.SelectedIndex = -1;
+        ComboBxCountriesDepart.SelectedIndex = -1;
+        DatePickrStarting.SelectedDate = DateTime.Now;
+        DatePickrEnding.SelectedDate = DateTime.Now;
     }
 
-    public void ClearItemFields()
-    {
-        NameOfItem = "";
-        InfoAboutItem = "";
-        ItemIsTravelDocument = false;
-        ItemCount = 1;
-        ItemIsRequired = false;
-    }
 
 
     //---------- Methods END ----------
