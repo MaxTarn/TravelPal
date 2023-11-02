@@ -26,7 +26,6 @@ public class UserManager : INotifyPropertyChanged
 
     public List<IUser> Users = new();
     private IUser? _signedInUser;
-
     public IUser? SignedInUser
     {
         get => _signedInUser;
