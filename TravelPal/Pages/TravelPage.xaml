@@ -54,17 +54,28 @@
             </ComboBox.ItemContainerStyle>
         </ComboBox>
 
-        <Button
-            Name="BtnCreateNewTravel"
+        <StackPanel
             Grid.Column="2"
             Grid.Row="0"
+            Orientation="Horizontal"
             VerticalAlignment="Bottom"
-            HorizontalAlignment="Center"
-            Content="Make new Travel Plan"
-            Height="45"
-            Width="230"
-            Background="{StaticResource DarkMint}" 
-            Click="BtnCreateNewTravel_Click"
+            HorizontalAlignment="Center">
+            <Button
+                Name="BtnCreateNewTravel"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Center"
+                Content="New Travel Plan"
+                Padding="10"
+                Background="{StaticResource DarkMint}" 
+                Click="BtnCreateNewTravel_Click"
+            />
+        </StackPanel>
+
+        <Button
+            Name="BtnPackingList"
+            Grid.Column="0"
+            Grid.Row="0" 
+            Content="packign lsit &#xD;&#xA;page" Click="BtnPackingList_Click"
             />
         
 
