@@ -12,7 +12,7 @@ public interface IUser
 {
     string UserName { get; set; }
     string Password { get; set; }
-    Country Location { get; set; }
+    Country CountryOfOrigin { get; set; }
     List<Travel> Travels { get; }
     public void AddTravel(Travel travel);
     public void RemoveTravel(Travel travel);
