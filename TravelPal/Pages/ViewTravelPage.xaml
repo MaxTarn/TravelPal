@@ -32,6 +32,38 @@
         <Label
             Grid.Column="1"
             Grid.Row="0"
-            Grid.ColumnSpan="2"/>
+            Grid.ColumnSpan="2"
+            Content="Your Travels"
+            FontSize="20"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            />
+
+        <ListView
+            Grid.Column="1"
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            Grid.RowSpan="5"
+            Background="#33000000" 
+            Foreground="White" 
+            BorderBrush="Transparent" 
+            BorderThickness="0" 
+            Margin="10" 
+            Padding="5">
+
+            <ListView.Template>
+                <ControlTemplate TargetType="ListView">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <ScrollViewer>
+                            <ItemsPresenter />
+                        </ScrollViewer>
+                    </Border>
+                </ControlTemplate>
+            </ListView.Template>
+
+
+        </ListView>
     </Grid>
 </Page>
