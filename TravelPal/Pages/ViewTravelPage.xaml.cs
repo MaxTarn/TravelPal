@@ -30,9 +30,27 @@ public partial class ViewTravelPage : Page, INotifyPropertyChanged
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
-    private ObservableCollection<Travel> _travels;
+    private ObservableCollection<ListViewItem>? _travels
+    {
+        get
+        {
+            if (Manager.UserManager.SignedInUser == null) return null;
+            Manager.UserManager.SignedInUser.Travels.ForEach(item =>
+            {
+                ListViewItem container = new();
+                container.Tag = item;
+                container.Content = $"{item.TravelName} | from:{item.FromCountry} | to:{item.ToCountry}";
 
-    public ObservableCollection<Travel> Travels
+            });
+            return _travels;
+        }
+        set
+        {
+            _travels = value;
+        }
+    }
+
+    public ObservableCollection<ListViewItem>? Travels
     {
         get => _travels;
         set
