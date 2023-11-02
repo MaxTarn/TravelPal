@@ -35,8 +35,9 @@ public class Manager
     public static TravelPage TravelPage = new();
     public static AddNewTravelPage AddNewTravelPage = new();
     public static PackingListPage PackingListPage = new();
-    public static ViewTravelPage ViewTravelPage = new();
+    public static ChooseTravelPage ChooseTravelPage = new();
     public static UserDetailsPage UserDetailsPage = new();
+    public static ViewTheTravelPage ViewTheTravelPage = new();
 
     //---------- Pages END ----------
 
