@@ -31,6 +31,8 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
+        
+
         <Label
             Grid.Column="0"
             Grid.Row="0"
@@ -240,15 +242,17 @@
                     Width="20"
                     Height="20"
                     Background="{StaticResource DarkMint}"
-                    Content="⮝"
-                    Margin="0,0,0,2" Click="BtnIncrementTravellersUp_Click"/>
+                    Content="{StaticResource ArrowUp}"
+                    Margin="0,0,0,2" 
+                    Click="BtnIncrementTravellersUp_Click"/>
 
                 <Button
                     Name="BtnIncrementTravellersDown"
                     Width="20"
                     Height="20"
                     Background="{StaticResource DarkMint}"
-                    Content="⮟" Click="BtnIncrementTravellersDown_Click"/>
+                    Content="{StaticResource ArrowDown}" 
+                    Click="BtnIncrementTravellersDown_Click"/>
             </StackPanel>
         </StackPanel>
 
@@ -456,7 +460,7 @@
                     Width="20"
                     Height="20"
                     Background="{StaticResource DarkMint}"
-                    Content="⮝"
+                    Content="{StaticResource ArrowUp}"
                     Margin="0,0,0,2" 
                     Click="BtnItemIncrementUp_OnClick"/>
 
@@ -465,7 +469,7 @@
                     Width="20"
                     Height="20"
                     Background="{StaticResource DarkMint}"
-                    Content="⮟" 
+                    Content="{StaticResource ArrowDown}" 
                     Click="BtnItemIncrementDown_OnClick"/>
             </StackPanel>
         </StackPanel>
