@@ -13,21 +13,6 @@ using TravelPal.Pages;
 
 public class Manager
 {
-    //---------- Pages ----------
-
-
-    public static HeaderPage HeaderPage = new();
-    public static LogInPage LogInPage = new();
-    public static SplashScreenPage SplashScreenPage = new();
-    public static RegisterPage RegisterPage = new();
-    public static TravelPage TravelPage = new();
-    public static AddNewTravelPage AddNewTravelPage = new();
-    public static PackingListPage PackingListPage = new();
-
-
-    //---------- Pages END ----------
-
-
 
     //---------- Managers ----------
 
@@ -38,6 +23,22 @@ public class Manager
 
     //---------- Managers END ----------
 
+
+
+    //---------- Pages ----------
+
+
+    public static HeaderPage HeaderPage = new();
+    public static LogInPage LogInPage = new();
+    public static SplashScreenPage SplashScreenPage = new();
+    public static RegisterPage RegisterPage = new();
+    public static TravelPage TravelPage = new();
+    public static AddNewTravelPage AddNewTravelPage = new();
+    public static PackingListPage PackingListPage = new();
+    public static ViewTravelPage ViewTravelPage = new();
+    public static UserDetailsPage UserDetailsPage = new();
+
+    //---------- Pages END ----------
 
 
     //---------- The Main window ----------
