@@ -25,6 +25,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
         <Label
@@ -47,6 +48,7 @@
             HorizontalAlignment="Right"
             ></Label>
         <TextBox
+            Name="TxtBxUserName"
             Grid.Column="2"
             Grid.Row="1"
             Background="#10000000"
@@ -55,7 +57,8 @@
             HorizontalContentAlignment="Left"
             FontSize="20"
             Width="auto"
-            Height="30"></TextBox>
+            Height="30"
+            Text="{Binding UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
 
         <Label
             Grid.Column="1"
@@ -98,7 +101,77 @@
             </ComboBox>
         </StackPanel>
 
+        <Label
+            Grid.Column="1"
+            Grid.Row="3"
+            FontSize="20"
+            Content="Password"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            ></Label>
+        <TextBox
+            Name="TxtBxPassword"
+            Grid.Column="2"
+            Grid.Row="3"
+            Background="#10000000"
+            BorderThickness="0,0,0,1.1"
+            BorderBrush="Black"
+            HorizontalContentAlignment="Left"
+            FontSize="20"
+            Width="auto"
+            Height="30"
+            Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            >
 
+        </TextBox>
+
+        <Label
+            Grid.Column="1"
+            Grid.Row="4"
+            FontSize="20"
+            Content="Repeat Password:"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+        ></Label>
+        <TextBox
+            Name="TxtBxRepeatPassword"
+            Grid.Column="2"
+            Grid.Row="4"
+            Background="#10000000"
+            BorderThickness="0,0,0,1.1"
+            BorderBrush="Black"
+            HorizontalContentAlignment="Left"
+            FontSize="20"
+            Width="auto"
+            Height="30"
+            Text="{Binding ReapeatPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            >
+
+        </TextBox>
+
+        <Button
+            Name="BtnEditDetails"
+            Grid.Column="1"
+            Grid.Row="5"
+            Grid.RowSpan="2"
+            Content="EDIT"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Padding="30,10,30,10" 
+            Click="BtnEditDetails_Click"
+            Background="{StaticResource DarkMint}"></Button>
+
+
+        <Button
+            Name="BtnSaveDetails"
+            Grid.Column="2"
+            Grid.Row="5"
+            Grid.RowSpan="2"
+            Content="Save"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Padding="30,10,30,10"
+            Background="{StaticResource DarkMint}" Click="BtnSaveDetails_Click"></Button>
 
     </Grid>
 </Page>
