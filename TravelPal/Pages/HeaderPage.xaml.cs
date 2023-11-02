@@ -57,11 +57,12 @@ namespace TravelPal.Pages
 
         private void BtnViewTravels_OnClick(object sender, RoutedEventArgs e)
         {
-            Manager.Window.FrameMain.Content = Manager.ViewTravelPage;
+            Manager.Window.FrameMain.Content = Manager.ChooseTravelPage;
         }
 
         private void BtnUserDetails_OnClick(object sender, RoutedEventArgs e)
         {
+            Manager.UserDetailsPage.UpdateGUI();
             Manager.Window.FrameMain.Content = Manager.UserDetailsPage;
         }
     }
