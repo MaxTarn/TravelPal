@@ -45,29 +45,6 @@ public partial class TravelPage : Page, INotifyPropertyChanged
     }
 
 
-
-    public void UpdateGUI()
-    {
-
-        ComboBxTravels.Items.Clear();
-        if (Manager.UserManager.SignedInUser?.Travels.Count <= 0)
-        {
-            ComboBoxItem defaultEntry = new ComboBoxItem();
-            defaultEntry.Content = "No Travels found.";
-            defaultEntry.Tag = null;
-            ComboBxTravels.Items.Add(defaultEntry);
-            return;
-        }
-        foreach (Travel travl in Manager.UserManager.SignedInUser.Travels)
-        {
-            ComboBoxItem containerForTravel = new();
-            containerForTravel.Tag = travl;
-            containerForTravel.Content = travl.TravelName;
-
-            ComboBxTravels.Items.Add(containerForTravel);
-        }
-    }
-
     private void BtnCreateNewTravel_Click(object sender, RoutedEventArgs e)
     {
         FrameMain.Content = Manager.AddNewTravelPage;
@@ -75,7 +52,35 @@ public partial class TravelPage : Page, INotifyPropertyChanged
 
     private void BtnPackingList_Click(object sender, RoutedEventArgs e)
     {
-        Manager.Window.FrameMain.Content = Manager.PackingListPage;
+        Manager.TravelPage.FrameMain.Content = Manager.PackingListPage;
+    }
+
+    private void BtnCreateTravel_Click(object sender, RoutedEventArgs e)
+    {
+        string? errorMessege = Manager.AddNewTravelPage.ValidateFields();
+        if (errorMessege != null)
+        {
+            MessageBox.Show(errorMessege);
+            return;
+        }
+        Travel newTravel = new Travel();
+        newTravel.TravelName = Manager.AddNewTravelPage.TravelName;
+
+        newTravel.Destination = Manager.AddNewTravelPage.ArrivalCity;
+        newTravel.FromCountry = Manager.AddNewTravelPage.FromCountry;
+        newTravel.ToCountry = Manager.AddNewTravelPage.ToCountry;
+        newTravel.Travellers = Manager.AddNewTravelPage.TravellerCount;
+        newTravel.PackingList = Manager.AddNewTravelPage.PackingList;
+        newTravel.StartDate = Manager.AddNewTravelPage.StartDay;
+        newTravel.EndDate = Manager.AddNewTravelPage.EndDay;
+        newTravel.IsWorkTrip = Manager.AddNewTravelPage.IsWorkTrip;
+        newTravel.WorkTripDetails = Manager.AddNewTravelPage.WorkDetails;
+        newTravel.IsVacation = Manager.AddNewTravelPage.IsVacation;
+        newTravel.IsAllInclusive = Manager.AddNewTravelPage.IsAllInclusive;
+
+        Manager.UserManager.SignedInUser.AddTravel(new Travel());
+        MessageBox.Show("Travel added to logged in user");
+
     }
 }
 
