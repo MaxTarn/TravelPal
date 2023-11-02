@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ using TravelPal.Classes;
 namespace TravelPal.Interfaces;
 
 
-public interface IUser
+public interface IUser : INotifyPropertyChanged
 {
     string UserName { get; set; }
     string Password { get; set; }
