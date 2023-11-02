@@ -1,0 +1,407 @@
+﻿<Page x:Class="TravelPal.Pages.ViewTheTravelPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TravelPal.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" 
+      d:DesignWidth="800"
+      Title="ViewTheTravelPage"
+      DataContext="{Binding RelativeSource={RelativeSource Self}}"
+      Background="{StaticResource GradientMainWindow}"
+      >
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+
+
+        <Label
+            IsEnabled="{Binding IsUserEditable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+            Grid.Column="0"
+            Grid.Row="0"
+            Content="Trip Name:"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            FontSize="20"/>
+        <TextBox
+            IsEnabled="{Binding IsUserEditable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+            Name="TxtBxTripName"
+            Grid.Column="1"
+            Grid.Row="0"
+            Background="#10000000"
+            BorderThickness="0,0,0,1.1"
+            BorderBrush="Black"
+            VerticalContentAlignment="Center"
+            FontSize="20"
+            Width="auto"
+            Height="30"
+            Text="{Binding TravelName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            />
+
+
+        <Label
+            IsEnabled="{Binding IsUserEditable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+            Grid.Column="0"
+            Grid.Row="1"
+            Content="Departing from:"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            FontSize="20"/>
+        <StackPanel 
+            IsEnabled="{Binding IsUserEditable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+            Grid.Column="1"
+            Grid.Row="1"
+            Orientation="Vertical"
+            
+            Height="auto"
+            Width="auto">
+
+            <StackPanel
+                IsEnabled="{Binding IsUserEditable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                Orientation="Horizontal"
+                HorizontalAlignment="Center">
+                <Label
+                    IsEnabled="{Binding IsUserEditable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                    Content="Eu Country"></Label>
+                <CheckBox
+                    IsEnabled="{Binding IsUserEditable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                    Name="ChkBxEuCountryDepart"
+                    VerticalAlignment="Center"
+                    Unchecked="ChkBxEuCountryDepart_OnUnchecked"
+                    Checked="ChkBxEuCountryDepart_OnChecked"
+                    IsThreeState="False"
+                    IsChecked="False"
+                />
+            </StackPanel>
+
+
+            <ComboBox
+                IsEnabled="{Binding IsUserEditable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                Name="ComboBxCountriesDepart"
+                VerticalContentAlignment="Center"
+                HorizontalContentAlignment="Center"
+                FontSize="10"
+                Background="#10000000"
+                BorderThickness="0,0,0,1.1"
+                Margin="0,9,0,0"
+                BorderBrush="Black"
+                SelectedItem="{Binding FromCountrySelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ComboBoxItem}">
+                        <Setter Property="FontSize" Value="10" />
+                    </Style>
+                </ComboBox.ItemContainerStyle>
+            </ComboBox>
+        </StackPanel>
+
+        <Label
+            IsEnabled="{Binding IsUserEditable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+            Grid.Column="0"
+            Grid.Row="2"
+            Content="Arriving to:"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            FontSize="20"/>
+        <StackPanel 
+            IsEnabled="{Binding IsUserEditable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+            Grid.Column="1"
+            Grid.Row="2"
+            Orientation="Vertical"
+            Height="auto"
+            Width="auto">
+
+            <StackPanel
+                IsEnabled="{Binding IsUserEditable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                Orientation="Horizontal"
+                HorizontalAlignment="Center">
+                <Label
+                    IsEnabled="{Binding IsUserEditable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                    Content="Eu Country"></Label>
+                <CheckBox
+                    IsEnabled="{Binding IsUserEditable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                    Name="ChkBxEuCountryArrival"
+                    VerticalAlignment="Center"
+                    Unchecked="ChkBxEuCountryArrival_OnUnchecked"
+                    Checked="ChkBxEuCountryArrival_OnChecked"
+                    IsThreeState="False"
+                    IsChecked="False"
+                />
+            </StackPanel>
+
+
+            <ComboBox
+                IsEnabled="{Binding IsUserEditable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                Name="ComboBxCountriesArrival"
+                VerticalContentAlignment="Center"
+                HorizontalContentAlignment="Center"
+                FontSize="10"
+                Background="#10000000"
+                BorderThickness="0,0,0,1.1"
+                Margin="0,9,0,0"
+                BorderBrush="Black"
+                SelectedItem="{Binding ToCountrySelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ComboBoxItem}">
+                        <Setter Property="FontSize" Value="10" />
+                    </Style>
+                </ComboBox.ItemContainerStyle>
+            </ComboBox>
+        </StackPanel>
+
+        <Label
+            IsEnabled="{Binding IsUserEditable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+            Grid.Column="0"
+            Grid.Row="3"
+            Content="Arriving to City:"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            FontSize="20"/>
+
+        <TextBox
+            IsEnabled="{Binding IsUserEditable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+            Name="TxtBxArivalCity"
+            Grid.Column="1"
+            Grid.Row="3"
+            Background="#10000000"
+            BorderThickness="0,0,0,1.1"
+            BorderBrush="Black"
+            VerticalContentAlignment="Center"
+            FontSize="20"
+            Width="auto"
+            Height="30"
+            Text="{Binding ArrivalCity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            ></TextBox>
+
+        <Label
+            IsEnabled="{Binding IsUserEditable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+            Grid.Column="3"
+            Grid.Row="0"
+            Content="Starting Date:"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            FontSize="20">
+        </Label>
+        <DatePicker
+            IsEnabled="{Binding IsUserEditable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+            Name="DatePickrStarting"
+            Grid.Column="4"
+            Grid.Row="0"
+            VerticalAlignment="Center"
+            Text="{Binding StartDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            ></DatePicker>
+
+        <Label
+            IsEnabled="{Binding IsUserEditable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+            Grid.Column="3"
+            Grid.Row="1"
+            Content="Ending Date:"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            FontSize="20">
+        </Label>
+        <DatePicker
+            IsEnabled="{Binding IsUserEditable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+            Name="DatePickrEnding"
+            Grid.Column="4"
+            Grid.Row="1"
+            VerticalAlignment="Center"
+            Text="{Binding EndDay , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+        ></DatePicker>
+
+        <Label
+            IsEnabled="{Binding IsUserEditable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+            Grid.Column="3"
+            Grid.Row="2"
+            Content="Travellers:"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            FontSize="20"/>
+
+        <StackPanel
+            IsEnabled="{Binding IsUserEditable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+            Grid.Column="4"
+            Grid.Row="2"
+            Orientation="Horizontal"
+            >
+            <TextBox
+                IsEnabled="{Binding IsUserEditable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                Name="TxtBxTravellerCount"
+                Background="#10000000"
+                BorderThickness="0,0,0,1.1"
+                BorderBrush="Black"
+                VerticalContentAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="20"
+                Width="120"
+                Height="30"
+                IsReadOnly="true"
+                HorizontalContentAlignment="Center"
+                Text="{Binding TravellerCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            ></TextBox>
+
+            <StackPanel
+                IsEnabled="{Binding IsUserEditable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Right"
+                Margin="8,5,0,0">
+                <Button
+                    Name="BtnIncrementTravellersUp"
+                    Width="20"
+                    Height="20"
+                    Background="{StaticResource DarkMint}"
+                    Content="{StaticResource ArrowUp}"
+                    Margin="0,0,0,2" 
+                    Click="BtnIncrementTravellersUp_OnClick"/>
+
+                <Button
+                    IsEnabled="{Binding IsUserEditable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                    Name="BtnIncrementTravellersDown"
+                    Width="20"
+                    Height="20"
+                    Background="{StaticResource DarkMint}"
+                    Content="{StaticResource ArrowDown}" 
+                    Click="BtnIncrementTravellersDown_OnClick"/>
+            </StackPanel>
+        </StackPanel>
+
+
+
+
+        <Label
+            IsEnabled="{Binding IsUserEditable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+            Grid.Column="3"
+            Grid.Row="3"
+            Content="Type Of trip:"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            FontSize="20"
+            />
+        <ComboBox
+            IsEnabled="{Binding IsUserEditable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+            Name="ComboBxTripType"
+            Grid.Column="4"
+            Grid.Row="3"
+            Height="25"
+            VerticalContentAlignment="Center"
+            HorizontalContentAlignment="Center"
+            FontSize="10"
+            Background="#10000000"
+            BorderThickness="0,0,0,1.1"
+            BorderBrush="Black"
+            SelectedItem="{Binding TypeOfTrip}">
+            <ComboBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ComboBoxItem}">
+                    <Setter Property="FontSize" Value="10" />
+                </Style>
+            </ComboBox.ItemContainerStyle>
+            <ComboBoxItem Tag="Vacation" >Vacation</ComboBoxItem>
+            <ComboBoxItem Tag="Work Trip">Work Trip</ComboBoxItem>
+        </ComboBox>
+
+        <!--When the ComboBxTripType is Vacation-->
+        <Label
+            IsEnabled="{Binding IsUserEditable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+            Visibility="Hidden"
+            Name="LblAllInclusive"
+            Grid.Column="3"
+            Grid.Row="4"
+            Content="All Inclusive:"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            FontSize="20"
+            />
+        <CheckBox
+            IsEnabled="{Binding IsUserEditable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+            Visibility="Hidden"
+            Name="ChkBxIsAllInclusive"
+            Grid.Column="4"
+            Grid.Row="4"
+            IsThreeState="False"
+            VerticalAlignment="Center"
+            IsChecked="{Binding IsAllInclusive,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <!--When the ComboBxTripType is Vacation END-->
+
+
+        <!--When the ComboBxTripType is Work Trip-->
+        <Label
+            IsEnabled="{Binding IsUserEditable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+            Visibility="Hidden"
+            Name="LblWorkTrip"
+            Grid.Column="3"
+            Grid.Row="4"
+            Content="Work Details:"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            FontSize="20"/>
+        <TextBox
+            IsEnabled="{Binding IsUserEditable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+            Visibility="Hidden"
+            Name="TxtBxWorkTrip"
+            Grid.Column="4"
+            Grid.Row="4"
+            Background="#10000000"
+            BorderThickness="0,0,0,1.1"
+            BorderBrush="Black"
+            VerticalContentAlignment="Center"
+            FontSize="20"
+            Width="auto"
+            Height="30"
+            Text="{Binding WorkDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <!--When the ComboBxTripType is Work Trip END-->
+
+        <ListView
+            IsEnabled="{Binding IsUserEditable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+            Name="LstViewPackingList"
+            Grid.Column="0"
+            Grid.Row="4"
+            Grid.RowSpan="4"
+            Margin="10"
+            ItemsSource="{Binding Travels}"
+            SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+
+        </ListView>
+
+        <Label
+            IsEnabled="{Binding IsUserEditable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+            Grid.Column="1"
+            Grid.Row="4"
+            Content="Item name:"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            FontSize="20"></Label>
+        <TextBox
+            Grid.Column="2"
+            Grid.Row="4"
+            Grid.ColumnSpan="2"
+            Background="#10000000"
+            BorderThickness="0,0,0,1.1"
+            BorderBrush="Black"
+            VerticalContentAlignment="Center"
+            FontSize="20"
+            Width="auto"
+            Margin="0,0,100,0"
+            Height="30"></TextBox>
+
+
+
+
+    </Grid>
+</Page>
