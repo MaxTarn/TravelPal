@@ -22,6 +22,7 @@ public class Manager
     public static RegisterPage RegisterPage = new();
     public static TravelPage TravelPage = new();
     public static AddNewTravelPage AddNewTravelPage = new();
+    public static PackingListPage PackingListPage = new();
 
 
     //---------- Pages END ----------
