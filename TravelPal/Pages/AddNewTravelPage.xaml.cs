@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.ObjectiveC;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 using TravelPal.Classes;
 using TravelPal.Interfaces;
 
@@ -30,8 +34,8 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
     //---------- Method and property for making databinding TwoWay----------
 
 
-    public event PropertyChangedEventHandler PropertyChanged;
-    protected virtual void OnPropertyChanged(string propertyName)
+    public event PropertyChangedEventHandler? PropertyChanged;
+    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
@@ -424,7 +428,6 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
         newTravel.IsAllInclusive = IsAllInclusive;
 
         Manager.UserManager.SignedInUser.AddTravel(newTravel);
-        Manager.TravelPage.UpdateGUI();
     }
 
 
@@ -467,27 +470,27 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
         }
     }
 
-    private void ChkBxItemIsTravelDocument_Checked(object sender, RoutedEventArgs e)
-    {
-        LblRequired.Visibility = Visibility.Visible;
-        ChkBxItemIsRequired.Visibility = Visibility.Visible;
+    //private void ChkBxItemIsTravelDocument_Checked(object sender, RoutedEventArgs e)
+    //{
+    //    LblRequired.Visibility = Visibility.Visible;
+    //    ChkBxItemIsRequired.Visibility = Visibility.Visible;
 
-        LblItemCount.Visibility = Visibility.Hidden;
-        StkPanlItemCount.Visibility = Visibility.Hidden;
-        TxtBxItemCount.Text = "1";
-        ItemCount = 1;
-    }
+    //    LblItemCount.Visibility = Visibility.Hidden;
+    //    StkPanlItemCount.Visibility = Visibility.Hidden;
+    //    TxtBxItemCount.Text = "1";
+    //    ItemCount = 1;
+    //}
 
-    private void ChkBxItemIsTravelDocument_OnUnchecked(object sender, RoutedEventArgs e)
-    {
-        LblItemCount.Visibility = Visibility.Visible;
-        StkPanlItemCount.Visibility = Visibility.Visible;
+    //private void ChkBxItemIsTravelDocument_OnUnchecked(object sender, RoutedEventArgs e)
+    //{
+    //    LblItemCount.Visibility = Visibility.Visible;
+    //    StkPanlItemCount.Visibility = Visibility.Visible;
 
-        LblRequired.Visibility = Visibility.Hidden;
-        ChkBxItemIsRequired.Visibility = Visibility.Hidden;
-        TxtBxItemCount.Text = "1";
-        ItemCount = 1;
-    }
+    //    LblRequired.Visibility = Visibility.Hidden;
+    //    ChkBxItemIsRequired.Visibility = Visibility.Hidden;
+    //    TxtBxItemCount.Text = "1";
+    //    ItemCount = 1;
+    //}
 
     private void ComboBxToAndFromCountry_onSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
@@ -506,7 +509,7 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
 
         newItem.Info = InfoAboutItem;
         PackingList.Add(newItem);
-        UpdatePackingListGUI();
+        //UpdatePackingListGUI();
         ClearItemFields();
     }
 
@@ -516,36 +519,36 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
 
 
     //---------- Methods ----------
-    private void UpdatePackingListGUI()
-    {
-        ComboBxPackingList.Items.Clear();
+    //private void UpdatePackingListGUI()
+    //{
+    //    ComboBxPackingList.Items.Clear();
 
-        foreach (IPackingListItem packItem in PackingList)
-        {
-            ComboBoxItem packItemContainer = new ComboBoxItem();
-            packItemContainer.Tag = packItem;
+    //    foreach (IPackingListItem packItem in PackingList)
+    //    {
+    //        ComboBoxItem packItemContainer = new ComboBoxItem();
+    //        packItemContainer.Tag = packItem;
 
-            packItemContainer.Content = packItem.Name;
+    //        packItemContainer.Content = packItem.Name;
 
-            if (packItem.GetType() == typeof(TravelDocument))
-            {
-                if ((packItem as TravelDocument).Required) packItemContainer.Content += " | Required";  //required is true
-                if (!(packItem as TravelDocument).Required) packItemContainer.Content += " | Not Required"; //required is false
-            }
+    //        if (packItem.GetType() == typeof(TravelDocument))
+    //        {
+    //            if ((packItem as TravelDocument).Required) packItemContainer.Content += " | Required";  //required is true
+    //            if (!(packItem as TravelDocument).Required) packItemContainer.Content += " | Not Required"; //required is false
+    //        }
 
-            if (packItem.GetType() == typeof(OtherItem))
-            {
-                packItemContainer.Content += $" | {(packItem as OtherItem).Quantity} pcs";
-            }
-            ComboBxPackingList.Items.Add(packItemContainer);
-        }
-    }
+    //        if (packItem.GetType() == typeof(OtherItem))
+    //        {
+    //            packItemContainer.Content += $" | {(packItem as OtherItem).Quantity} pcs";
+    //        }
+    //        ComboBxPackingList.Items.Add(packItemContainer);
+    //    }
+    //}
     /// <summary>
     /// Returns null when all fields are not null and the things entered are acceptable
     /// Returns a non empty string with the error messege if a field is not accepted
     /// </summary>
     /// <returns></returns>
-    private string? ValidateFields()
+    public string? ValidateFields()
     {
         // null checking
         if (TravelName == null) return "Trip Name:  is empty!";
@@ -563,6 +566,7 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
         if (FromCountry.Equals(ToCountry)) return "You are departing from and arriving to the same country";
         if (ArrivalCity.Length <= 1) return "City name too short!";
         if (StartDay > EndDay) return "You cant depart after you arrive!";
+        if (EndDay < DateTime.Now) return "You cant have a trip that ends in the past!";
         //if (StartDay.Equals(EndDay)) return "You cant depart and arrive on the same day!";
 
 
@@ -574,22 +578,41 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
         if (FromCountrySelectedItem == null) return;
         if (ToCountrySelectedItem == null) return;
 
-        PackingList.RemoveAll(item => item.Name == "Passport");
-
-        foreach (IPackingListItem item in PackingList)
+        // Manager.PackingListPage.PackingList
+        ListViewItem? itemToRemove = Manager.PackingListPage.PackingList.FirstOrDefault(item =>
         {
-            if (item.Name.Equals("Passport")) return;
+            var tag = item.Tag as TravelDocument;
+            return tag?.Name == "Passport";
+        });
+        if (itemToRemove != null)
+        {
+            Manager.PackingListPage.PackingList.Remove(itemToRemove);
         }
 
-        if (FromCountry.IsEUCountry() && ToCountry.IsEUCountry())
+        IPackingListItem passport = new TravelDocument("Passport", true);
+        ListViewItem container = new();
+
+        if (FromCountry.IsEUCountry() && ToCountry.IsEUCountry()) (passport as TravelDocument).Required = false;
+
+        Manager.PackingListPage.PackingList.Add(container);
+        container.Tag = passport;
+        string? containerContent = Utility.TruncateOrPadStringTo((container.Tag as TravelDocument)?.Name, (int)(int?)FindResource("PackingListFirstItemLength"));
+
+        string req = "Required";
+        string notReq = "Not Required";
+
+        if ((bool)(container.Tag as TravelDocument)?.Required)
         {
-            PackingList.Add(new TravelDocument("Passport", false));
-            UpdatePackingListGUI();
-            return;
+            containerContent += " | " + Utility.TruncateOrPadStringTo(req, (int)(int?)FindResource("PackingListSecondItemLength"));
+
+        }
+        else
+        {
+            containerContent += " | " + Utility.TruncateOrPadStringTo(notReq, (int)(int?)FindResource("PackingListSecondItemLength"));
         }
 
-        PackingList.Add(new TravelDocument("Passport", true));
-        UpdatePackingListGUI();
+        container.Content = containerContent;
+
     }
 
     private string? ValidItemFields()
@@ -610,4 +633,5 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
 
 
     //---------- Methods END ----------
+
 }
