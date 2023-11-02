@@ -25,10 +25,6 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
         
@@ -66,6 +62,7 @@
             Grid.Column="1"
             Grid.Row="1"
             Orientation="Vertical"
+            
             Height="auto"
             Width="auto">
 
@@ -93,6 +90,7 @@
                 FontSize="10"
                 Background="#10000000"
                 BorderThickness="0,0,0,1.1"
+                Margin="0,9,0,0"
                 BorderBrush="Black"
                 SelectedItem="{Binding FromCountrySelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <ComboBox.ItemContainerStyle>
@@ -141,6 +139,7 @@
                 FontSize="10"
                 Background="#10000000"
                 BorderThickness="0,0,0,1.1"
+                Margin="0,9,0,0"
                 BorderBrush="Black"
                 SelectedItem="{Binding ToCountrySelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <ComboBox.ItemContainerStyle>
@@ -174,8 +173,8 @@
             ></TextBox>
 
         <Label
-            Grid.Column="0"
-            Grid.Row="4"
+            Grid.Column="3"
+            Grid.Row="0"
             Content="Starting Date:"
             VerticalAlignment="Center"
             HorizontalAlignment="Right"
@@ -183,15 +182,15 @@
         </Label>
         <DatePicker
             Name="DatePickrStarting"
-            Grid.Column="1"
-            Grid.Row="4"
+            Grid.Column="4"
+            Grid.Row="0"
             VerticalAlignment="Center"
             Text="{Binding StartDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             ></DatePicker>
 
         <Label
-            Grid.Column="0"
-            Grid.Row="5"
+            Grid.Column="3"
+            Grid.Row="1"
             Content="Ending Date:"
             VerticalAlignment="Center"
             HorizontalAlignment="Right"
@@ -199,23 +198,23 @@
         </Label>
         <DatePicker
             Name="DatePickrEnding"
-            Grid.Column="1"
-            Grid.Row="5"
+            Grid.Column="4"
+            Grid.Row="1"
             VerticalAlignment="Center"
             Text="{Binding EndDay , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
         ></DatePicker>
 
         <Label
-            Grid.Column="0"
-            Grid.Row="6"
+            Grid.Column="3"
+            Grid.Row="2"
             Content="Travellers:"
             VerticalAlignment="Center"
             HorizontalAlignment="Right"
             FontSize="20"/>
 
         <StackPanel
-            Grid.Column="1"
-            Grid.Row="6"
+            Grid.Column="4"
+            Grid.Row="2"
             Orientation="Horizontal"
             >
             <TextBox
@@ -260,8 +259,8 @@
 
 
         <Label
-            Grid.Column="0"
-            Grid.Row="7"
+            Grid.Column="3"
+            Grid.Row="3"
             Content="Type Of trip:"
             VerticalAlignment="Center"
             HorizontalAlignment="Right"
@@ -269,8 +268,8 @@
             />
         <ComboBox
             Name="ComboBxTripType"
-            Grid.Column="1"
-            Grid.Row="7"
+            Grid.Column="4"
+            Grid.Row="3"
             Height="25"
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
@@ -292,8 +291,8 @@
         <Label
             Visibility="Hidden"
             Name="LblAllInclusive"
-            Grid.Column="0"
-            Grid.Row="8"
+            Grid.Column="3"
+            Grid.Row="4"
             Content="All Inclusive:"
             VerticalAlignment="Center"
             HorizontalAlignment="Right"
@@ -302,8 +301,8 @@
         <CheckBox
             Visibility="Hidden"
             Name="ChkBxIsAllInclusive"
-            Grid.Column="1"
-            Grid.Row="8"
+            Grid.Column="4"
+            Grid.Row="4"
             IsThreeState="False"
             VerticalAlignment="Center"
             IsChecked="{Binding IsAllInclusive,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -314,8 +313,8 @@
         <Label
             Visibility="Hidden"
             Name="LblWorkTrip"
-            Grid.Column="0"
-            Grid.Row="8"
+            Grid.Column="3"
+            Grid.Row="4"
             Content="Work Details:"
             VerticalAlignment="Center"
             HorizontalAlignment="Right"
@@ -323,8 +322,8 @@
         <TextBox
             Visibility="Hidden"
             Name="TxtBxWorkTrip"
-            Grid.Column="1"
-            Grid.Row="8"
+            Grid.Column="4"
+            Grid.Row="4"
             Background="#10000000"
             BorderThickness="0,0,0,1.1"
             BorderBrush="Black"
@@ -337,202 +336,14 @@
 
 
 
-        <Label
-            Grid.Column="3"
-            Grid.Row="0"
-            Content="Packing List:"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Right"
-            FontSize="20"/>
+
+       
+      
         
-        <ComboBox
-            Name="ComboBxPackingList"
-            Grid.Column="4"
-            Grid.Row="0"
-            Height="25"
-            VerticalContentAlignment="Center"
-            HorizontalContentAlignment="Center"
-            FontSize="10"
-            Background="#10000000"
-            BorderThickness="0,0,0,1.1"
-            BorderBrush="Black">
-            <ComboBox.ItemContainerStyle>
-                <Style TargetType="{x:Type ComboBoxItem}">
-                    <Setter Property="FontSize" Value="10" />
-                </Style>
-            </ComboBox.ItemContainerStyle>
-        </ComboBox>
-
-        <Label
-            Grid.Column="3"
-            Grid.Row="1"
-            Content="Name of Item:"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Right"
-            FontSize="20"/>
-        <TextBox
-            Name="TxtBxNameOfItem"
-            Grid.Column="4"
-            Grid.Row="1"
-            Background="#10000000"
-            BorderThickness="0,0,0,1.1"
-            BorderBrush="Black"
-            VerticalContentAlignment="Center"
-            FontSize="20"
-            Width="auto"
-            Height="30"
-            Text="{Binding NameOfItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-        <Label
-            Grid.Column="3"
-            Grid.Row="2"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Right"
-            FontSize="20"
-            Content="Info about item:"
-            />
-        <TextBox
-            Name="TxtBxInfoAboutItem"
-            Grid.Column="4"
-            Grid.Row="2"
-            Background="#10000000"
-            BorderThickness="0,0,0,1.1"
-            BorderBrush="Black"
-            VerticalContentAlignment="Center"
-            FontSize="20"
-            Width="auto"
-            Height="30"
-            Text="{Binding InfoAboutItem,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-
-        <Label
-            Grid.Column="2"
-            Grid.Row="3"
-            Grid.ColumnSpan="2"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Right"
-            FontSize="19"
-            Content="Travel Document:"/>
-        <CheckBox
-            Name="ChkBxItemIsTravelDocument"
-            Grid.Column="4"
-            Grid.Row="3"
-            IsThreeState="False"
-            VerticalAlignment="Center" 
-            Checked="ChkBxItemIsTravelDocument_Checked"
-            Unchecked="ChkBxItemIsTravelDocument_OnUnchecked"
-            IsChecked="{Binding ItemIsTravelDocument,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            />
-
-        <Label
-            Name="LblItemCount"
-            Grid.Column="3"
-            Grid.Row="4"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Right"
-            FontSize="20"
-            Content="Item Count:"/>
-        <StackPanel
-            Name="StkPanlItemCount"
-            Grid.Column="4"
-            Grid.Row="4"
-            Orientation="Horizontal">
-            <TextBox
-                Name="TxtBxItemCount"
-                Background="#10000000"
-                BorderThickness="0,0,0,1.1"
-                BorderBrush="Black"
-                VerticalContentAlignment="Center"
-                VerticalAlignment="Center"
-                FontSize="20"
-                Width="120"
-                Height="30"
-                IsReadOnly="true"
-                HorizontalContentAlignment="Center"
-                Text="{Binding ItemCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                PreviewTextInput="TxtBxItemCount_OnPreviewTextInput"
-            ></TextBox>
-
-            <StackPanel
-                HorizontalAlignment="Right"
-                Margin="8,0,0,0">
-                <Button
-                    Name="BtnItemIncrementUp"
-                    Width="20"
-                    Height="20"
-                    Background="{StaticResource DarkMint}"
-                    Content="{StaticResource ArrowUp}"
-                    Margin="0,0,0,2" 
-                    Click="BtnItemIncrementUp_OnClick"/>
-
-                <Button
-                    Name="BtnItemIncrementDown"
-                    Width="20"
-                    Height="20"
-                    Background="{StaticResource DarkMint}"
-                    Content="{StaticResource ArrowDown}" 
-                    Click="BtnItemIncrementDown_OnClick"/>
-            </StackPanel>
-        </StackPanel>
-
-        <Label
-            Name="LblRequired"
-            Grid.Column="3"
-            Grid.Row="4"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Right"
-            FontSize="20"
-            Content="Required:"
-            Visibility="Hidden"/>
-        <CheckBox
-            Name="ChkBxItemIsRequired"
-            Grid.Column="4"
-            Grid.Row="4"
-            IsThreeState="False"
-            VerticalAlignment="Center"
-            Visibility="Hidden"
-            IsChecked="{Binding ItemIsRequired,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-        <Button
-            Name="BtnAddItemToList"
-            Grid.Column="3"
-            Grid.Row="5"
-            Grid.ColumnSpan="2"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center"
-            Padding="10"
-            Content="Add item"
-            Background="{StaticResource DarkMint}" Click="BtnAddItemToList_Click"></Button>
-
-
-
-        <TextBlock
-            Name="TxtBlckError"
-            Grid.Column="3"
-            Grid.Row="6"
-            Grid.ColumnSpan="2"
-            Grid.RowSpan="2"
-            FontSize="12"
-            TextWrapping="Wrap"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center"
-            Text="{Binding ErrorMessegeText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            />
 
 
 
 
-            <Button
-            Name="BtnCreateNewTravel"
-            Grid.Column="3"
-            Grid.Row="8"
-            Grid.ColumnSpan="2"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center"
-            Padding="10"
-            FontWeight="Bold"
-            Content="Add travel"
-            FontSize="20"
-            Background="{StaticResource DarkMint}" 
-            Click="BtnCreateNewTravel_OnClick"/>
+            
     </Grid>
 </Page>
