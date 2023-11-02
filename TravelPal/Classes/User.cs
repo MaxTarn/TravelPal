@@ -12,7 +12,7 @@ namespace TravelPal.Classes
     {
         public string UserName { get; set; }
         public string Password { get; set; }
-        public Country Location { get; set; }
+        public Country CountryOfOrigin { get; set; }
         public List<Travel> Travels { get; set; } = new();
         public void AddTravel(Travel travel)
         {
@@ -24,11 +24,11 @@ namespace TravelPal.Classes
             Travels.Remove(travel);
         }
 
-        public User(string userName, string password, Country location)
+        public User(string userName, string password, Country countryOfOrigin)
         {
             UserName = userName;
             Password = password;
-            Location = location;
+            CountryOfOrigin = countryOfOrigin;
         }
     }
 }
