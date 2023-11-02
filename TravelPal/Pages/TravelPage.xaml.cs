@@ -78,8 +78,10 @@ public partial class TravelPage : Page, INotifyPropertyChanged
         newTravel.IsVacation = Manager.AddNewTravelPage.IsVacation;
         newTravel.IsAllInclusive = Manager.AddNewTravelPage.IsAllInclusive;
 
-        Manager.UserManager.SignedInUser.AddTravel(new Travel());
+        Manager.UserManager.SignedInUser.AddTravel(newTravel);
         MessageBox.Show("Travel added to logged in user");
+        Manager.AddNewTravelPage.ClearFields();
+        Manager.ChooseTravelPage.UpdateGUI();
 
     }
 }
