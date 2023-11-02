@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using TravelPal.Classes;
@@ -9,10 +11,33 @@ using TravelPal.Interfaces;
 namespace TravelPal.Managers;
 
 
-public class UserManager
+public class UserManager : INotifyPropertyChanged
 {
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+
+
+
     public List<IUser> Users = new();
-    public IUser? SignedInUser { get; set; } = null;
+    private IUser? _signedInUser;
+
+    public IUser? SignedInUser
+    {
+        get => _signedInUser;
+        set
+        {
+            if (_signedInUser == value) return;
+            _signedInUser = value;
+            OnPropertyChanged(nameof(SignedInUser));
+            Manager.UserDetailsPage.UpdateGUI();
+        }
+    }
 
 
     public string AddUser(IUser addThisUser)
@@ -68,5 +93,7 @@ public class UserManager
         Users.Add(new User("user", "password", new Country(EUCountries.Sweden)));
         Users.Add(new Admin("admin", "password", new Country(EUCountries.Finland)));
     }
+
+
 }
 
