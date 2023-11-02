@@ -68,6 +68,8 @@
 
         <!--The Diffrent heights of Pages, and windows END-->
 
+        <system:Int32 x:Key="PackingListFirstItemLength">10</system:Int32>
+        <system:Int32 x:Key="PackingListSecondItemLength">15</system:Int32>
 
         <FontFamily x:Key="MonoSpaceFont">Consolas</FontFamily>
 
