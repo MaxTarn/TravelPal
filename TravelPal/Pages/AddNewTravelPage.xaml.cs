@@ -346,7 +346,7 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
         }
     }
 
-    private void ChkBxEuCountry_OnUnchecked(object sender, RoutedEventArgs e)
+    private void ChkBxEuCountry_OnUnchecked(object? sender, RoutedEventArgs? e)
     {
         ComboBxCountriesDepart.Items.Clear();
         foreach (Country country in Country.NonEUCountries)
@@ -357,7 +357,7 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
         }
     }
 
-    private void ChkBxEuCountryArrival_OnUnchecked(object sender, RoutedEventArgs e)
+    private void ChkBxEuCountryArrival_OnUnchecked(object? sender, RoutedEventArgs? e)
     {
         ComboBxCountriesArrival.Items.Clear();
         foreach (Country country in Country.NonEUCountries)
