@@ -73,6 +73,9 @@ public partial class TravelPage : Page, INotifyPropertyChanged
         FrameMain.Content = Manager.AddNewTravelPage;
     }
 
-
+    private void BtnPackingList_Click(object sender, RoutedEventArgs e)
+    {
+        Manager.Window.FrameMain.Content = Manager.PackingListPage;
+    }
 }
 
