@@ -75,10 +75,10 @@ public partial class ChooseTravelPage : Page, INotifyPropertyChanged
         }
     }
 
-    private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-    {
-        MessageBox.Show(Manager.UserManager.SignedInUser.Travels.Count.ToString());
-    }
+    //private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+    //{
+    //    MessageBox.Show(Manager.UserManager.SignedInUser.Travels.Count.ToString());
+    //}
 
     private void BtnViewTravel_Click(object sender, RoutedEventArgs e)
     {

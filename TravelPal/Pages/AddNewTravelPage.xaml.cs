@@ -422,7 +422,7 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
 
     private void BtnCreateNewTravel_OnClick(object sender, RoutedEventArgs e)
     {
-        MessageBox.Show(Manager.UserManager.SignedInUser?.Travels.Count.ToString());
+        //MessageBox.Show(Manager.UserManager.SignedInUser?.Travels.Count.ToString());
         ErrorMessegeText = ValidateFields();
         if (ErrorMessegeText != null) return;
 

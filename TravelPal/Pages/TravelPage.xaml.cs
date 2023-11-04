@@ -42,6 +42,7 @@ public partial class TravelPage : Page, INotifyPropertyChanged
     public TravelPage()
     {
         InitializeComponent();
+        FrameMain.Content = Manager.AddNewTravelPage;
     }
 
 
@@ -64,6 +65,7 @@ public partial class TravelPage : Page, INotifyPropertyChanged
             return;
         }
         Travel newTravel = new Travel();
+
         newTravel.TravelName = Manager.AddNewTravelPage.TravelName;
 
         newTravel.Destination = Manager.AddNewTravelPage.ArrivalCity;
