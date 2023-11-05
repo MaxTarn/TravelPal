@@ -66,6 +66,7 @@ public partial class RegisterPage : Page
         if (!ValidUserInput()) return;
 
         LblErrorMessege.Content = Manager.UserManager.AddUser(new User(UserName, Password, ChosenCountry));
+        if (LblErrorMessege.Content == "User with that username already exists") return;
         Manager.UserManager.LogIn(new User(UserName, Password, ChosenCountry));
         Manager.HeaderPage.UpdateGUI();
 
