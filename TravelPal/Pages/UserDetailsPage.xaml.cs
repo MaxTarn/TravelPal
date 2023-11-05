@@ -274,5 +274,13 @@ public partial class UserDetailsPage : Page, INotifyPropertyChanged
         Password = "";
         ReapeatPassword = "";
     }
+
+    private void BtnLogOut_Click(object sender, RoutedEventArgs e)
+    {
+        Manager.UserManager.SignedInUser = null;
+        Manager.HeaderPage.HideIt();
+        Manager.Window.FrameMain.Content = Manager.SplashScreenPage;
+
+    }
 }
 
