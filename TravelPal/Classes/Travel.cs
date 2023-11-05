@@ -17,7 +17,7 @@ public class Travel
     public Country? FromCountry { get; set; }
     public Country? ToCountry { get; set; }
     public int? Travellers { get; set; }
-    public List<IPackingListItem> PackingList;
+    public List<IPackingListItem> PackingList { get; set; }
     public DateTime? StartDate { get; set; }
     public DateTime? EndDate { get; set; }
     public int? TravelDays { get; set; }
@@ -36,11 +36,12 @@ public class Travel
         this.StartDate = startDate;
         this.EndDate = endDate;
         TravelDays = endDate.Subtract(startDate).Days;
+        PackingList = new();
     }
 
     public Travel()
     {
-
+        PackingList = new();
     }
 }
 
