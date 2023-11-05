@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TravelPal.Classes;
 
 namespace TravelPal.Pages
 {
@@ -35,10 +36,19 @@ namespace TravelPal.Pages
 
         public void UpdateGUI()
         {
+            if (Manager.UserManager.SignedInUser.GetType() == typeof(Admin))
+            {
+                StckPanelTravel.IsEnabled = false;
+            }
+            else
+            {
+                StckPanelTravel.IsEnabled = true;
+            }
             if (Manager.UserManager.SignedInUser != null)
             {
                 StckPanelTravel.Visibility = Visibility.Visible;
                 StckPanelMiddle.Visibility = Visibility.Visible;
+                BtnUserDetails.Visibility = Visibility.Visible;
                 BtnUserDetails.Content = Manager.UserManager.SignedInUser.UserName;
                 TxtBxLogInStatus.Text = "Logged in as";
                 return;
@@ -57,13 +67,27 @@ namespace TravelPal.Pages
 
         private void BtnViewTravels_OnClick(object sender, RoutedEventArgs e)
         {
-            Manager.Window.FrameMain.Content = Manager.ChooseTravelPage;
+            Manager.Window.FrameMain.Content = Manager.ChooseTravelPagee;
+            Manager.ChooseTravelPagee.UpdateGUI();
         }
 
         private void BtnUserDetails_OnClick(object sender, RoutedEventArgs e)
         {
             Manager.UserDetailsPage.UpdateGUI();
             Manager.Window.FrameMain.Content = Manager.UserDetailsPage;
+        }
+
+        public void HideIt()
+        {
+            StckPanelMiddle.Visibility = Visibility.Hidden;
+            StckPanelTravel.Visibility = Visibility.Hidden;
+            BtnUserDetails.Visibility = Visibility.Hidden;
+            TxtBxLogInStatus.Text = "";
+        }
+
+        private void BtnAboutTravelPal_OnClick(object sender, RoutedEventArgs e)
+        {
+            Manager.Window.FrameMain.Content = Manager.AboutTravelPage;
         }
     }
 }
