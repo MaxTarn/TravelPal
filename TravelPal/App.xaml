@@ -1,77 +1,84 @@
-﻿<Application x:Class="TravelPal.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:TravelPal"
-             xmlns:system="clr-namespace:System;assembly=System.Runtime"
-             StartupUri="MainWindow.xaml">
+﻿<Application
+    x:Class="TravelPal.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:TravelPal"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime"
+    StartupUri="MainWindow.xaml">
     <Application.Resources>
 
 
-        <!--Blue Colors-->
+        <!--  Blue Colors  -->
 
-        <SolidColorBrush x:Key="Blu" Color="MediumSlateBlue"></SolidColorBrush>
-        <SolidColorBrush x:Key="MoreBlu" Color="#6495ed"></SolidColorBrush>
-        <SolidColorBrush x:Key="DarkerBlu" Color="#6a5acd"></SolidColorBrush>
+        <SolidColorBrush x:Key="Blu" Color="MediumSlateBlue" />
+        <SolidColorBrush x:Key="MoreBlu" Color="#6495ed" />
+        <SolidColorBrush x:Key="DarkerBlu" Color="#6a5acd" />
 
-        <!--Blue Colors END-->
-
-
-
-        <!--Mint Colors-->
-
-        <SolidColorBrush x:Key="Mint" Color="MintCream"></SolidColorBrush>
-        <SolidColorBrush x:Key="DarkMint" Color="#20b2aa"></SolidColorBrush>
-        <SolidColorBrush x:Key="BlueMint" Color="#00ced1"></SolidColorBrush>
-
-        <!--Mint Colors END-->
+        <!--  Blue Colors END  -->
 
 
 
+        <!--  Mint Colors  -->
 
-        <!--Gradient Brushes-->
+        <SolidColorBrush x:Key="Mint" Color="MintCream" />
+        <SolidColorBrush x:Key="DarkMint" Color="#20b2aa" />
+        <SolidColorBrush x:Key="BlueMint" Color="#00ced1" />
+
+        <!--  Mint Colors END  -->
+
+
+
+
+        <!--  Gradient Brushes  -->
 
         <LinearGradientBrush x:Key="GradientHeaderBackground" StartPoint="0,0" EndPoint="0,1">
-            <GradientStop Offset="0" Color="{Binding Source={StaticResource DarkerBlu},Path=Color}"></GradientStop>
-            <GradientStop Offset="1" Color="Transparent"></GradientStop>
+            <GradientStop Offset="0" Color="{Binding Source={StaticResource DarkerBlu}, Path=Color}" />
+            <GradientStop Offset="1" Color="Transparent" />
         </LinearGradientBrush>
 
         <LinearGradientBrush x:Key="GradientMainWindow" StartPoint="0,0" EndPoint="0,1">
-            <GradientStop Offset="0" Color="{Binding Source={StaticResource BlueMint},Path=Color}"></GradientStop>
-            <GradientStop Offset="1" Color="{Binding Source={StaticResource Blu},Path=Color}"></GradientStop>
+            <GradientStop Offset="0" Color="{Binding Source={StaticResource BlueMint}, Path=Color}" />
+            <GradientStop Offset="1" Color="{Binding Source={StaticResource Blu}, Path=Color}" />
         </LinearGradientBrush>
 
-        <!--Gradient Brushes END-->
+        <!--  Gradient Brushes END  -->
 
 
 
-        <!--Other Colors-->
+        <!--  Other Colors  -->
 
-        <SolidColorBrush x:Key="TextColor" Color="Black"></SolidColorBrush>
-        <SolidColorBrush x:Key="ButtonGreen" Color="Lime"></SolidColorBrush>
+        <SolidColorBrush x:Key="TextColor" Color="Black" />
+        <SolidColorBrush x:Key="ButtonGreen" Color="Lime" />
 
-        <!--Other Colors END-->
-
-        <FontFamily x:Key="MainFont"></FontFamily>
+        <!--  Other Colors END  -->
 
 
 
 
-        <!--The Diffrent heights of Pages, and windows-->
+
+
+
+        <!--  The Diffrent heights of Pages, and windows  -->
 
         <system:Double x:Key="WindowHeight">600</system:Double>
-        <system:Double x:Key="PageHeight">495</system:Double> <!--WindowHeight/10*8,25-->
-        <system:Double x:Key="HeaderHeight">75</system:Double> <!--WindowHeight/10*1,25-->
+
+        <system:Double x:Key="PageHeight">495</system:Double>
+        <!--  WindowHeight/10*8,25  -->
+
+        <system:Double x:Key="HeaderHeight">75</system:Double>
+        <!--  WindowHeight/10*1,25  -->
 
         <system:Double x:Key="WindowWidth">800</system:Double>
         <system:Double x:Key="PageWidth">800</system:Double>
         <system:Double x:Key="HeaderWidth">800</system:Double>
 
-        <!--The Diffrent heights of Pages, and windows END-->
+        <!--  The Diffrent heights of Pages, and windows END  -->
 
         <system:Int32 x:Key="PackingListFirstItemLength">10</system:Int32>
         <system:Int32 x:Key="PackingListSecondItemLength">15</system:Int32>
 
         <FontFamily x:Key="MonoSpaceFont">Consolas</FontFamily>
+        <FontFamily x:Key="MainFont">Arial</FontFamily>
 
         <system:String x:Key="ArrowLeft">⮜</system:String>
         <system:String x:Key="ArrowUp">⮝</system:String>
