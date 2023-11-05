@@ -492,7 +492,6 @@ namespace TravelPal.Pages
         private void BtnEnableDisableEdit_Click(object sender, RoutedEventArgs e)
         {
             IsUserEditable = !IsUserEditable;
-            MessageBox.Show("fg vds<");
         }
 
         private void BtnSaveChanges_Click(object sender, RoutedEventArgs e)

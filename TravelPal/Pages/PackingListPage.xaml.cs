@@ -217,9 +217,6 @@ public partial class PackingListPage : Page, INotifyPropertyChanged
         }
     }
 
-    //private void Button_Click(object sender, RoutedEventArgs e)
-    //{
-    //    MessageBox.Show(PackingList.Count.ToString());
-    //}
+
 }
 

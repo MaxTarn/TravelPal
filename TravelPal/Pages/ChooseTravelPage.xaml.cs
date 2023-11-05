@@ -115,10 +115,6 @@ public partial class ChooseTravelPage : Page, INotifyPropertyChanged
 
     }
 
-    private void Button_Click(object sender, RoutedEventArgs e)
-    {
-        MessageBox.Show(Manager.UserManager.SignedInUser.Travels.Count.ToString());
-    }
 
     private void BtnDeleteTravel_Click(object sender, RoutedEventArgs e)
     {

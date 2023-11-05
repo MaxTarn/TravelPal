@@ -360,8 +360,7 @@
             BorderBrush="Transparent"
             BorderThickness="0"
             IsEnabled="{Binding IsUserEditable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-            ItemsSource="{Binding PackingListItems, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            ItemsSource="{Binding PackingListItems, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <ListView.Template>
                 <ControlTemplate TargetType="ListView">
                     <Border
