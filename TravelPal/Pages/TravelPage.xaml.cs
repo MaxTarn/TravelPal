@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TravelPal.Classes;
+using TravelPal.Interfaces;
 
 namespace TravelPal.Pages;
 
@@ -70,7 +71,13 @@ public partial class TravelPage : Page, INotifyPropertyChanged
         newTravel.FromCountry = Manager.AddNewTravelPage.FromCountry;
         newTravel.ToCountry = Manager.AddNewTravelPage.ToCountry;
         newTravel.Travellers = Manager.AddNewTravelPage.TravellerCount;
-        newTravel.PackingList = Manager.AddNewTravelPage.PackingList;
+
+        foreach (ListViewItem packItem in Manager.PackingListPage.PackingList)
+        {
+            newTravel.PackingList.Add(packItem.Tag as IPackingListItem);
+        }
+
+
         newTravel.StartDate = Manager.AddNewTravelPage.StartDay;
         newTravel.EndDate = Manager.AddNewTravelPage.EndDay;
         newTravel.IsWorkTrip = Manager.AddNewTravelPage.IsWorkTrip;
@@ -78,10 +85,11 @@ public partial class TravelPage : Page, INotifyPropertyChanged
         newTravel.IsVacation = Manager.AddNewTravelPage.IsVacation;
         newTravel.IsAllInclusive = Manager.AddNewTravelPage.IsAllInclusive;
 
+
         Manager.UserManager.SignedInUser.AddTravel(newTravel);
         MessageBox.Show("Travel added to logged in user");
         Manager.AddNewTravelPage.ClearFields();
-        Manager.ChooseTravelPage.UpdateGUI();
+        Manager.ChooseTravelPagee.UpdateGUI();
 
     }
 }
