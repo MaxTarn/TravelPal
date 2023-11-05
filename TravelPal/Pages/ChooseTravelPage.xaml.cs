@@ -16,11 +16,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TravelPal.Classes;
+using TravelPal.Interfaces;
 
 namespace TravelPal.Pages;
 
 /// <summary>
-/// Interaction logic for ChooseTravelPage.xaml
+/// Interaction logic for ChooseTravelPagee.xaml
 /// </summary>
 public partial class ChooseTravelPage : Page, INotifyPropertyChanged
 {
@@ -65,27 +66,79 @@ public partial class ChooseTravelPage : Page, INotifyPropertyChanged
 
     public void UpdateGUI()
     {
-        MessageBox.Show(Manager.UserManager.SignedInUser.Travels.First().TravelName);
+        if (Manager.UserManager.SignedInUser.GetType() == typeof(Admin))
+        {
+            UpdateAsAdmin();
+            return;
+        }
+
+        Travels.Clear();
         foreach (Travel travl in Manager.UserManager.SignedInUser.Travels)
         {
             ListViewItem container = new();
             container.Tag = travl;
-            container.Content = $"{Utility.TruncateOrPadStringTo(travl.TravelName, 10)} | from:{Utility.TruncateOrPadStringTo(travl.FromCountry.ToString(), 10)} ";
+            container.Content = $"{Utility.TruncateOrPadStringTo(travl.TravelName, 20)} | " +
+                                $"from:{Utility.TruncateOrPadStringTo(travl.FromCountry.ToString(), 20)} | " +
+                                $"To:{Utility.TruncateOrPadStringTo(travl.ToCountry.ToString(), 20)}";
             Travels.Add(container);
         }
     }
 
-    private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+    private void UpdateAsAdmin()
     {
-        MessageBox.Show(Manager.UserManager.SignedInUser.Travels.Count.ToString());
+
+        Travels.Clear();
+        foreach (IUser user in Manager.UserManager.Users)
+        {
+            if (user.GetType() == typeof(Admin)) continue;
+            user.Travels.ForEach(travel =>
+            {
+                ListViewItem container = new();
+                container.Tag = travel;
+                container.Content = $"{Utility.TruncateOrPadStringTo($"User: {user.UserName}", 20)} | ";
+                container.Content += $"from:{Utility.TruncateOrPadStringTo(travel.FromCountry.ToString(), 20)} | " +
+                                     $"To:{Utility.TruncateOrPadStringTo(travel.ToCountry.ToString(), 20)}";
+                Travels.Add(container);
+            });
+        }
     }
 
     private void BtnViewTravel_Click(object sender, RoutedEventArgs e)
     {
-        if (SelectedItem == null) MessageBox.Show("Choose a Travel");
+        if (SelectedItem == null)
+        {
+            MessageBox.Show("Choose a Travel");
+            return;
+        }
         Manager.Window.FrameMain.Content = Manager.ViewTheTravelPage;
         Manager.ViewTheTravelPage.UpdateGUI(SelectedItem.Tag as Travel);
 
+    }
+
+    private void Button_Click(object sender, RoutedEventArgs e)
+    {
+        MessageBox.Show(Manager.UserManager.SignedInUser.Travels.Count.ToString());
+    }
+
+    private void BtnDeleteTravel_Click(object sender, RoutedEventArgs e)
+    {
+        if (SelectedItem == null)
+        {
+            MessageBox.Show("Choose a Travel");
+            return;
+        }
+
+        foreach (IUser user in Manager.UserManager.Users)
+        {
+            if (user.GetType() == typeof(Admin)) continue;
+
+            Travel? travel = user.Travels.Find(trvl => trvl == SelectedItem.Tag as Travel);
+            if (travel != null)
+            {
+                user.Travels.Remove(travel);
+            }
+        }
+        UpdateGUI();
     }
 }
 
