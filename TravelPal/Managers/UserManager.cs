@@ -91,6 +91,45 @@ public class UserManager : INotifyPropertyChanged
     {
         Users.Add(new User("user", "password", new Country(EUCountries.Sweden)));
         Users.Add(new Admin("admin", "password", new Country(EUCountries.Finland)));
+
+        User usr = (User)Users.Find(user => user.UserName == "user");
+
+        usr.Travels.Add(new Travel()
+        {
+            TravelName = "Travel one",
+            Destination = "london",
+            FromCountry = new Country(NonEUcountries.UnitedKingdom),
+            ToCountry = new Country(NonEUcountries.Afghanistan),
+            Travellers = 2,
+            PackingList = new List<IPackingListItem>()
+            {
+                new TravelDocument("passport", true)
+            },
+            StartDate = DateTime.Now,
+            EndDate = DateTime.Now.AddDays(3),
+            IsVacation = true,
+            IsAllInclusive = true,
+
+        });
+
+        usr.Travels.Add(new Travel()
+        {
+            TravelName = "Travel two",
+            Destination = "spain pain",
+            FromCountry = new Country(NonEUcountries.UnitedKingdom),
+            ToCountry = new Country(EUCountries.Spain),
+            Travellers = 6,
+            PackingList = new List<IPackingListItem>()
+            {
+                new TravelDocument("passport", true)
+            },
+            StartDate = DateTime.Now,
+            EndDate = DateTime.Now.AddDays(2),
+            IsWorkTrip = true,
+            WorkTripDetails = "gonna do some work?"
+
+        });
+
     }
 
 
