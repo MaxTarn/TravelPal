@@ -168,6 +168,7 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Background="{StaticResource DarkMint}"
-            Content="Log Out" Click="BtnLogOut_Click" />
+            Click="BtnLogOut_Click"
+            Content="Log Out" />
     </Grid>
 </Page>
