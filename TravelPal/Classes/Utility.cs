@@ -24,13 +24,19 @@ public static class Utility
         inputString = inputString.Trim();
         string outPutString;
 
-        if (inputString.Length > maximumLength)
+        if (inputString.Length >= maximumLength)
         {
             outPutString = inputString.Substring(0, maximumLength - 3);
             outPutString += "...";
             return outPutString;
         }
-        outPutString = inputString.PadRight(maximumLength);
+
+        outPutString = inputString;
+        for (int i = 1; i <= maximumLength - inputString.Length; i++)
+        {
+            outPutString += " ";
+        }
+
         return outPutString;
 
 
