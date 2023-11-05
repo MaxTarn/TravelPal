@@ -11,7 +11,7 @@ using TravelPal.Pages;
 
 
 
-public class Manager
+public static class Manager
 {
 
     //---------- Managers ----------
