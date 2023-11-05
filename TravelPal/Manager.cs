@@ -35,15 +35,19 @@ public class Manager
     public static TravelPage TravelPage = new();
     public static AddNewTravelPage AddNewTravelPage = new();
     public static PackingListPage PackingListPage = new();
-    public static ChooseTravelPage ChooseTravelPage = new();
+    public static ChooseTravelPage ChooseTravelPagee = new();
     public static UserDetailsPage UserDetailsPage = new();
     public static ViewTheTravelPage ViewTheTravelPage = new();
+    public static AboutTravelPalPage AboutTravelPage = new();
 
     //---------- Pages END ----------
 
 
     //---------- The Main window ----------
     public static MainWindow Window = (MainWindow)Application.Current.MainWindow; // took me an entire day to debug and find that this worked
+
+
+
 
 
 }
