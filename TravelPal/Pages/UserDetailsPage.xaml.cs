@@ -145,7 +145,6 @@ public partial class UserDetailsPage : Page, INotifyPropertyChanged
         Countries = new();
         ChangeCountriesInComboBox(IsEUCountry);
         InputIsEnabled = false;
-        MessageBox.Show(InputIsEnabled.ToString());
 
     }
 
