@@ -40,7 +40,7 @@ namespace TravelPal.Pages
         {
             string loginMessege = Manager.UserManager.LogIn(UserName, Password);
 
-            if (!loginMessege.Equals(""))
+            if (!string.IsNullOrEmpty(loginMessege))
             {
                 LblErrorInfo.Content = loginMessege;
                 return;
