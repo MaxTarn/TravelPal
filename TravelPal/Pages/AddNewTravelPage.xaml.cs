@@ -224,71 +224,7 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
 
 
 
-    private string? _nameOfItem;
-    public string? NameOfItem
-    {
-        get => _nameOfItem;
-        set
-        {
-            if (_nameOfItem == value) return;
-            _nameOfItem = value;
-            OnPropertyChanged(nameof(NameOfItem));
 
-        }
-    }
-
-    private string? _infoAboutItem;
-    public string? InfoAboutItem
-    {
-        get => _infoAboutItem;
-        set
-        {
-            if (_infoAboutItem == value) return;
-            _infoAboutItem = value;
-            OnPropertyChanged(nameof(InfoAboutItem));
-
-        }
-    }
-
-    private bool _itemIsRequired;
-    public bool ItemIsRequired
-    {
-        get => _itemIsRequired;
-        set
-        {
-            if (_itemIsRequired == value) return;
-            _itemIsRequired = value;
-            OnPropertyChanged(nameof(ItemIsRequired));
-
-        }
-    }
-
-    private bool _itemIsTravelDocument;
-    public bool ItemIsTravelDocument
-    {
-        get => _itemIsTravelDocument;
-        set
-        {
-            if (_itemIsTravelDocument == value) return;
-            _itemIsTravelDocument = value;
-            OnPropertyChanged(nameof(ItemIsTravelDocument));
-
-        }
-    }
-
-    private int? _itemCount;
-    public int? ItemCount
-    {
-        get => _itemCount;
-        set
-        {
-            if (_itemCount == value) return;
-
-            _itemCount = value;
-            OnPropertyChanged(nameof(ItemCount));
-
-        }
-    }
 
     private string? _errorMessegeText;
     public string? ErrorMessegeText
@@ -311,7 +247,7 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
     //---------- Packing List ----------
 
 
-    public List<IPackingListItem> PackingList { get; set; } = new();
+    public ObservableCollection<IPackingListItem> PackingList { get; set; } = new();
 
 
     //---------- Packing List  END----------
@@ -329,11 +265,9 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
 
         FromCountry = (ComboBxCountriesDepart.Items.GetItemAt(1) as ComboBoxItem)?.Tag as Country;
 
-        ItemCount = 1;
         TravellerCount = 1;
         StartDay = DateTime.Now;
         EndDay = DateTime.Now;
-        ItemIsRequired = false;
         IsAllInclusive = false;
     }
 
@@ -420,29 +354,6 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
         }
     }
 
-    private void BtnCreateNewTravel_OnClick(object sender, RoutedEventArgs e)
-    {
-        MessageBox.Show(Manager.UserManager.SignedInUser?.Travels.Count.ToString());
-        ErrorMessegeText = ValidateFields();
-        if (ErrorMessegeText != null) return;
-
-        //TODO IsWorkTrip and IsVaccation can be null at the same time, fix it
-        Travel newTravel = new Travel();
-        newTravel.TravelName = TravelName;
-        newTravel.Destination = ArrivalCity;
-        newTravel.FromCountry = FromCountry;
-        newTravel.ToCountry = ToCountry;
-        newTravel.Travellers = TravellerCount;
-        newTravel.PackingList = PackingList;
-        newTravel.StartDate = StartDay;
-        newTravel.EndDate = EndDay;
-        newTravel.IsWorkTrip = IsWorkTrip;
-        newTravel.WorkTripDetails = WorkDetails;
-        newTravel.IsVacation = IsVacation;
-        newTravel.IsAllInclusive = IsAllInclusive;
-
-        Manager.UserManager.SignedInUser.AddTravel(newTravel);
-    }
 
 
     //so that if user somehow manages to work around the IsReadOnly=true this prevents all input into txtbx
@@ -513,12 +424,13 @@ public partial class AddNewTravelPage : Page, INotifyPropertyChanged
         if (FromCountrySelectedItem == null) return;
         if (ToCountrySelectedItem == null) return;
 
-        // Manager.PackingListPage.PackingList
+        // gets the passport if it already exists
         ListViewItem? itemToRemove = Manager.PackingListPage.PackingList.FirstOrDefault(item =>
         {
             var tag = item.Tag as TravelDocument;
             return tag?.Name == "Passport";
         });
+        //removes the pasport
         if (itemToRemove != null)
         {
             Manager.PackingListPage.PackingList.Remove(itemToRemove);
